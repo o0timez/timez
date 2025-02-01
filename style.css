@@ -1,8 +1,8 @@
-/* Đặt màu nền xám đen cho toàn bộ trang */
+/* Màu nền và font chữ */
 body {
-    background-color: #333; /* Màu nền xám đen */
+    background-color: #181818; /* Màu nền đen đậm */
     color: #fff; /* Màu chữ trắng */
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif; /* Sử dụng font chữ hiện đại */
     margin: 0;
     padding: 0;
     display: flex;
@@ -12,27 +12,26 @@ body {
     overflow: hidden;
 }
 
-/* Cấu trúc chung của trang */
+/* Cấu trúc container */
 .container {
     text-align: center;
-    background-color: #444; /* Màu nền hộp chứa */
-    padding: 20px;
-    border-radius: 20px; /* Làm tròn các góc của container */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    opacity: 0; /* Bắt đầu từ trạng thái mờ */
-    transform: translateY(30px); /* Đặt phần tử bắt đầu từ dưới */
-    animation: fadeInUp 1s ease-out forwards; /* Thêm hiệu ứng trượt và mờ dần */
+    background-color: #222; /* Màu nền của container */
+    padding: 40px;
+    border-radius: 30px; /* Góc tròn cho container */
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.4);
+    width: 320px;
+    animation: fadeInUp 1s ease-out forwards; /* Hiệu ứng fade-in */
 }
 
-/* Hiệu ứng trượt và fade-in */
+/* Hiệu ứng fade-in */
 @keyframes fadeInUp {
     0% {
         opacity: 0;
-        transform: translateY(30px); /* Bắt đầu trượt từ dưới lên */
+        transform: translateY(30px); /* Di chuyển từ dưới lên */
     }
     100% {
         opacity: 1;
-        transform: translateY(0); /* Kết thúc ở vị trí bình thường */
+        transform: translateY(0); /* Đạt vị trí bình thường */
     }
 }
 
@@ -40,10 +39,10 @@ body {
 .avatar {
     width: 120px;
     height: 120px;
-    border-radius: 50%; /* Làm tròn avatar thành hình tròn */
+    border-radius: 50%; /* Avatar hình tròn */
     margin-bottom: 20px;
-    border: 4px solid #fff;
-    transition: transform 0.3s ease; /* Hiệu ứng zoom */
+    border: 5px solid #fff;
+    transition: transform 0.3s ease-in-out;
 }
 
 .avatar:hover {
@@ -52,14 +51,17 @@ body {
 
 /* Tiêu đề */
 h1 {
-    font-size: 2.5em;
+    font-size: 2.3em;
     margin: 10px 0;
+    font-weight: 600;
+    color: #fff;
 }
 
 /* Thông tin nhỏ */
 p {
-    font-size: 1.2em;
+    font-size: 1.1em;
     color: #ccc;
+    margin-bottom: 20px;
 }
 
 /* Các nút link */
@@ -68,17 +70,33 @@ p {
 }
 
 .links a {
-    display: inline-block;
-    margin: 10px;
-    padding: 12px 24px;
-    background-color: #1a73e8;
+    display: block;
+    margin: 10px 0;
+    padding: 14px 25px;
+    background-color: #4CAF50; /* Màu nền xanh */
     color: white;
     text-decoration: none;
-    border-radius: 20px; /* Làm tròn các góc của nút */
-    font-size: 1.2em;
-    transition: background-color 0.3s ease;
+    border-radius: 50px;
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
 }
 
 .links a:hover {
-    background-color: #0c59c2;
+    background-color: #45a049; /* Màu nền xanh đậm khi hover */
+    transform: scale(1.05); /* Phóng to khi hover */
+}
+
+/* Điều chỉnh style của các nút */
+.links a:active {
+    transform: scale(0.98); /* Tạo hiệu ứng co lại khi click */
+}
+
+/* Cải thiện khoảng cách giữa các link */
+.links a:nth-child(1) {
+    margin-top: 0;
+}
+
+.links a:last-child {
+    margin-bottom: 0;
 }
