@@ -11,6 +11,11 @@
 
     <div class="container">
         <img src="images/citi.jpg" alt="Avatar TimeZ" class="avatar">
+
+        <div id="volume-control">
+            <input type="range" id="volume-slider" min="0" max="100" value="100">
+        </div>
+
         <h1>Cường</h1>
         <p>
             <img src="images/CatHeart.gif" class="bio-icon"> 
@@ -31,53 +36,131 @@
     </div>
 
     <div id="music-container">
-        <iframe id="youtube-player" width="0" height="0" frameborder="0" allow="autoplay"></iframe>
+        <div id="youtube-player"></div>
     </div>
 
     <script>
-    const avatar = document.querySelector('.avatar');
-    const youtubePlayer = document.getElementById('youtube-player');
-    let clickCount = 0;
-    let timer;
-    let isPlaying = false;
+let player;
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('youtube-player', {
+        height: '0',
+        width: '0',
+        playerVars: {
+            'autoplay': 0,
+            'controls': 0,
+            'disablekb': 1,
+            'modestbranding': 1,
+            'playsinline': 1
+        },
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
 
-    let musicList = [
-        { title: "Bài hát 1", url: "nQVaRFP-ppw" },
-        { title: "Bài hát 2", url: "abc123xyz" }  // Thay ID video hợp lệ
+const audioController = (() => {
+    const avatar = document.querySelector('.avatar');
+    const volumeControl = document.getElementById('volume-control');
+    const volumeSlider = document.getElementById('volume-slider');
+
+    let isPlaying = false;
+    let volumeTimeout;
+    let clickTimer = null;
+    let clickCount = 0;
+
+    const musicList = [
+        { 
+            title: "Love For You", 
+            url: "nQVaRFP-ppw"
+        },
+        { 
+            title: "Bài hát 2", 
+            url: "abc123xyz"
+        }
     ];
 
-    function playMusic() {
-        if (isPlaying) return; // Nếu nhạc đang phát, không phát lại
-        let randomMusic = musicList[Math.floor(Math.random() * musicList.length)];
-        youtubePlayer.src = `https://www.youtube.com/embed/${randomMusic.url}?autoplay=1&loop=1&playlist=${randomMusic.url}&controls=0`;
-
-        avatar.classList.add('playing');
-        isPlaying = true;
+    function onPlayerReady(event) {
+        event.target.setVolume(100);
     }
 
-    function stopMusic() {
-        youtubePlayer.src = "";
-        avatar.classList.remove('playing');
-        isPlaying = false;
+    function onPlayerStateChange(event) {
+        if (event.data === YT.PlayerState.PLAYING) {
+            avatar.classList.add('playing');
+            isPlaying = true;
+        } else if (event.data === YT.PlayerState.ENDED) {
+            event.target.playVideo();
+        }
     }
 
-    avatar.addEventListener("click", function () {
+    const handleAvatarClick = () => {
         clickCount++;
-        clearTimeout(timer);
-
-        timer = setTimeout(() => {
-            if (clickCount === 1) {
+        
+        if (clickCount === 1) {
+            clickTimer = setTimeout(() => {
                 if (!isPlaying) {
-                    playMusic();
-                } else {
-                    stopMusic();
+                    playRandomMusic();
                 }
-            } else if (clickCount === 2) {
-                playMusic();
-            }
+                showVolumeControl();
+                clickCount = 0;
+            }, 300);
+        } else if (clickCount === 2) {
+            clearTimeout(clickTimer);
+            playRandomMusic();
             clickCount = 0;
-        }, 300);
-    });
+        }
+    };
+
+    const playRandomMusic = () => {
+        const randomMusic = musicList[Math.floor(Math.random() * musicList.length)];
+        player.loadVideoById({
+            videoId: randomMusic.url,
+            playerVars: {
+                'loop': 1,
+                'playlist': randomMusic.url
+            }
+        });
+        player.playVideo();
+    };
+
+    const showVolumeControl = () => {
+        clearTimeout(volumeTimeout);
+        volumeControl.classList.add('show-volume');
+        volumeTimeout = setTimeout(() => {
+            volumeControl.classList.remove('show-volume');
+        }, 3000);
+    };
+
+    const handleVolumeChange = (e) => {
+        const volume = e.target.value;
+        player.setVolume(volume);
+    };
+
+    const init = () => {
+        volumeControl.classList.remove('show-volume');
+        avatar.addEventListener('click', handleAvatarClick);
+        volumeSlider.addEventListener('input', handleVolumeChange);
+
+        volumeControl.addEventListener('mouseenter', () => {
+            clearTimeout(volumeTimeout);
+        });
+
+        volumeControl.addEventListener('mouseleave', () => {
+            volumeTimeout = setTimeout(() => {
+                volumeControl.classList.remove('show-volume');
+            }, 1000);
+        });
+    };
+
+    return { init };
+})();
+
+document.addEventListener('DOMContentLoaded', () => {
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.body.appendChild(tag);
+    audioController.init();
+});
     </script>
 
 </body>
