@@ -1,68 +1,70 @@
-/* Đặt màu nền cho trang và căn giữa toàn bộ nội dung */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f1f1f1;
+/* Reset Margin and Padding for all elements */
+* {
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    box-sizing: border-box;
 }
 
-/* Cấu trúc container */
-.container {
+/* Background color and font setup */
+body {
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 280px;
+    padding: 20px;
 }
 
-/* Thiết lập giao diện cho avatar */
+/* Main container */
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile styles */
 .profile {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .avatar {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    margin-bottom: 15px;
-    border: 4px solid #ddd;
-    padding: 3px;
+    object-fit: cover;
+    border: 4px solid #ff6f61; /* Border color like the original */
+    margin-bottom: 20px;
 }
 
-.name {
+h1 {
     font-size: 24px;
     color: #333;
-    margin: 0;
+    font-weight: bold;
 }
 
 .bio {
-    font-size: 14px;
-    color: #777;
+    font-size: 16px;
+    color: #888;
 }
 
-/* Các liên kết và nút */
+/* Button styles */
 .links {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
 }
 
 .btn {
-    display: inline-block;
-    padding: 12px;
-    background-color: #007bff;
-    color: #ffffff;
     text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+    background-color: #ff6f61;
+    color: white;
+    padding: 12px;
+    border-radius: 25px;
+    font-size: 16px;
+    transition: background-color 0.3s;
 }
 
 .btn:hover {
-    background-color: #0056b3;
+    background-color: #e15a50; /* Slightly darker red on hover */
 }
