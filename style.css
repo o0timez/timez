@@ -62,12 +62,71 @@ body {
 }
 
 .volume-slider {
-    position: fixed;
-    bottom: 20px;
+    position: absolute;
+    bottom: -40px; /* Đặt ngay dưới avatar */
     left: 50%;
     transform: translateX(-50%);
     width: 150px;
-    z-index: 1000;
+    height: 6px;
+    background: #ddd; /* Màu nền nhạt */
+    border-radius: 5px;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Tùy chỉnh màu thanh trượt */
+.volume-slider::-webkit-slider-runnable-track {
+    background: linear-gradient(to right, #ff9a9e, #fad0c4); /* Màu gradient nhẹ nhàng */
+    height: 6px;
+    border-radius: 5px;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    background: #ff6b81; /* Màu hồng nhẹ */
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: -4px;
+}
+
+.volume-slider::-moz-range-track {
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    height: 6px;
+    border-radius: 5px;
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    background: #ff6b81;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Hiệu ứng fade-in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.volume-slider {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.volume-slider.show {
+    opacity: 1;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
 
