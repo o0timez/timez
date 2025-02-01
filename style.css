@@ -1,112 +1,36 @@
-/* Màu nền và font chữ */
+/* Đặt màu nền tổng thể */
 body {
-    background-color: #F5B7B1; /* Màu nền hồng phấn anh đào */
-    color: #fff; /* Màu chữ trắng */
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
+    background-color: #F2BDD1;
+    color: #333; /* Màu chữ tối để dễ đọc */
 }
 
-/* Cấu trúc container */
-.container {
-    text-align: center;
-    background-color: #F7B8B3; /* Màu nền nhạt hơn của container */
-    padding: 40px;
-    border-radius: 30px;
-    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.4);
-    width: 320px;
-    animation: fadeInUp 1s ease-out forwards;
+/* Màu tiêu đề */
+h1, h2, h3 {
+    color: #F37EB5;
 }
 
-/* Hiệu ứng fade-in */
-@keyframes fadeInUp {
-    0% {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Avatar */
-.avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    margin-bottom: 20px;
-    border: 5px solid #F5C6C0; /* Màu viền avatar sáng hơn */
-    transition: transform 0.3s ease-in-out;
-}
-
-.avatar:hover {
-    transform: scale(1.1);
-}
-
-/* Tiêu đề */
-h1 {
-    font-size: 2.3em;
-    margin: 10px 0;
-    font-weight: 600;
-    color: #fff;
-}
-
-/* Thông tin nhỏ */
-.bio-icon {
-    width: 20px;
-    height: 20px;
-    vertical-align: middle;
-    margin: 0 5px;
-}
-
-p {
-    font-size: 1.1em;
-    color: #F1D3D1; /* Màu chữ nhẹ nhàng, hài hòa */
-    margin-bottom: 20px;
-}
-
-/* Các nút link */
-.links {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.links a {
-    display: inline-block;
-    padding: 8px 16px;
-    font-size: 0.9em;
-    background-color: #E74C3C; /* Màu nền đỏ nhẹ */
-    color: white;
+/* Màu của các liên kết */
+a {
+    color: #F2688D;
     text-decoration: none;
-    border-radius: 20px;
-    font-weight: 500;
-    transition: background-color 0.3s, transform 0.2s ease-in-out;
 }
 
-.links a:hover {
-    background-color: #C0392B; /* Màu nền khi hover */
-    transform: scale(1.05);
+/* Đặt màu nền cho các phần tử khác */
+section, .card {
+    background-color: #F3D5DD;
+    border: 1px solid #F37EB5;
 }
 
-/* Điều chỉnh style của các nút */
-.links a:active {
-    transform: scale(0.98);
+/* Màu nền cho nút bấm */
+button {
+    background-color: #F37EB5;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
 }
 
-/* Cải thiện khoảng cách giữa các link */
-.links a:nth-child(1) {
-    margin-top: 0;
-}
-
-.links a:last-child {
-    margin-bottom: 0;
+/* Màu khi rê chuột lên các phần tử */
+a:hover, button:hover {
+    background-color: #F2688D;
 }
