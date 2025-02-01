@@ -19,7 +19,7 @@
         <h1>Cường</h1>
         <p>
             <img src="images/CatHeart.gif" class="bio-icon"> 
-            Love Is All
+            I want love
             <img src="images/CatHeart.gif" class="bio-icon">
         </p>
         <p>speak: 🇻🇳🇨🇳🇱🇦🇹🇭🇺🇲</p>
@@ -40,127 +40,95 @@
     </div>
 
     <script>
-let player;
-function onYouTubeIframeAPIReady() {
-    player = new YT.Player('youtube-player', {
-        height: '0',
-        width: '0',
-        playerVars: {
-            'autoplay': 0,
-            'controls': 0,
-            'disablekb': 1,
-            'modestbranding': 1,
-            'playsinline': 1
-        },
-        events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
+        // Tải API YouTube trước khi chạy bất cứ đoạn script nào
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        document.head.appendChild(tag);
+
+        let player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {
+                height: '0',
+                width: '0',
+                videoId: 'nQVaRFP-ppw', // Video mặc định để khởi tạo player
+                playerVars: {
+                    'autoplay': 0,
+                    'controls': 0,
+                    'disablekb': 1,
+                    'modestbranding': 1,
+                    'playsinline': 1
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
         }
-    });
-}
 
-const audioController = (() => {
-    const avatar = document.querySelector('.avatar');
-    const volumeControl = document.getElementById('volume-control');
-    const volumeSlider = document.getElementById('volume-slider');
-
-    let isPlaying = false;
-    let volumeTimeout;
-    let clickTimer = null;
-    let clickCount = 0;
-
-    const musicList = [
-        { 
-            title: "Love For You", 
-            url: "nQVaRFP-ppw"
-        },
-        { 
-            title: "Bài hát 2", 
-            url: "abc123xyz"
+        function onPlayerReady(event) {
+            event.target.setVolume(100); // Đảm bảo volume không bị tắt
         }
-    ];
 
-    function onPlayerReady(event) {
-        event.target.setVolume(100);
-    }
-
-    function onPlayerStateChange(event) {
-        if (event.data === YT.PlayerState.PLAYING) {
-            avatar.classList.add('playing');
-            isPlaying = true;
-        } else if (event.data === YT.PlayerState.ENDED) {
-            event.target.playVideo();
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                event.target.playVideo(); // Tự động phát lại
+            }
         }
-    }
 
-    const handleAvatarClick = () => {
-        clickCount++;
-        
-        if (clickCount === 1) {
-            clickTimer = setTimeout(() => {
-                if (!isPlaying) {
+        const audioController = (() => {
+            const avatar = document.querySelector('.avatar');
+            const volumeControl = document.getElementById('volume-control');
+            const volumeSlider = document.getElementById('volume-slider');
+
+            let isPlaying = false;
+            let volumeTimeout;
+
+            const musicList = [
+                { title: "Love For You", url: "nQVaRFP-ppw" },
+                { title: "Bài hát 2", url: "abc123xyz" }
+            ];
+
+            const playRandomMusic = () => {
+                const randomMusic = musicList[Math.floor(Math.random() * musicList.length)];
+                player.loadVideoById(randomMusic.url);
+                player.playVideo();
+                isPlaying = true;
+            };
+
+            const handleAvatarClick = () => {
+                if (isPlaying) {
+                    player.pauseVideo();
+                    isPlaying = false;
+                } else {
                     playRandomMusic();
                 }
-                showVolumeControl();
-                clickCount = 0;
-            }, 300);
-        } else if (clickCount === 2) {
-            clearTimeout(clickTimer);
-            playRandomMusic();
-            clickCount = 0;
-        }
-    };
+            };
 
-    const playRandomMusic = () => {
-        const randomMusic = musicList[Math.floor(Math.random() * musicList.length)];
-        player.loadVideoById({
-            videoId: randomMusic.url,
-            playerVars: {
-                'loop': 1,
-                'playlist': randomMusic.url
-            }
+            const handleVolumeChange = (e) => {
+                player.setVolume(e.target.value);
+            };
+
+            const init = () => {
+                avatar.addEventListener('click', handleAvatarClick);
+                volumeSlider.addEventListener('input', handleVolumeChange);
+
+                volumeControl.addEventListener('mouseenter', () => {
+                    clearTimeout(volumeTimeout);
+                });
+
+                volumeControl.addEventListener('mouseleave', () => {
+                    volumeTimeout = setTimeout(() => {
+                        volumeControl.classList.remove('show-volume');
+                    }, 1000);
+                });
+            };
+
+            return { init };
+        })();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            audioController.init();
         });
-        player.playVideo();
-    };
-
-    const showVolumeControl = () => {
-        clearTimeout(volumeTimeout);
-        volumeControl.classList.add('show-volume');
-        volumeTimeout = setTimeout(() => {
-            volumeControl.classList.remove('show-volume');
-        }, 3000);
-    };
-
-    const handleVolumeChange = (e) => {
-        const volume = e.target.value;
-        player.setVolume(volume);
-    };
-
-    const init = () => {
-        volumeControl.classList.remove('show-volume');
-        avatar.addEventListener('click', handleAvatarClick);
-        volumeSlider.addEventListener('input', handleVolumeChange);
-
-        volumeControl.addEventListener('mouseenter', () => {
-            clearTimeout(volumeTimeout);
-        });
-
-        volumeControl.addEventListener('mouseleave', () => {
-            volumeTimeout = setTimeout(() => {
-                volumeControl.classList.remove('show-volume');
-            }, 1000);
-        });
-    };
-
-    return { init };
-})();
-
-document.addEventListener('DOMContentLoaded', () => {
-    const tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    document.body.appendChild(tag);
-    audioController.init();
-});
     </script>
 
 </body>
