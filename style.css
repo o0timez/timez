@@ -63,7 +63,7 @@ body {
 
 .volume-slider {
     position: absolute;
-    bottom: -40px; /* Đặt ngay dưới avatar */
+    bottom: -5px; /* Đặt ngay dưới avatar */
     left: 50%;
     transform: translateX(-50%);
     width: 150px;
