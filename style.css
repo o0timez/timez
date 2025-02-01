@@ -1,7 +1,7 @@
 /* Màu nền và font chữ */
 body {
-    background-color: #F5B7B1; /* Màu nền hồng phấn anh đào */
-    color: #fff; /* Màu chữ trắng */
+    background-color: #F3D5DD; /* Màu hồng nhạt */
+    color: #F2688D; /* Màu chữ hồng đậm */
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
@@ -15,10 +15,10 @@ body {
 /* Cấu trúc container */
 .container {
     text-align: center;
-    background-color: #F7B8B3; /* Màu nền nhạt hơn của container */
+    background-color: #F2BDD1; /* Màu nền container */
     padding: 40px;
     border-radius: 30px;
-    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
     width: 320px;
     animation: fadeInUp 1s ease-out forwards;
 }
@@ -41,7 +41,7 @@ body {
     height: 120px;
     border-radius: 50%;
     margin-bottom: 20px;
-    border: 5px solid #F5C6C0; /* Màu viền avatar sáng hơn */
+    border: 5px solid #F37EB5; /* Màu viền avatar */
     transition: transform 0.3s ease-in-out;
 }
 
@@ -54,7 +54,7 @@ h1 {
     font-size: 2.3em;
     margin: 10px 0;
     font-weight: 600;
-    color: #fff;
+    color: #F2688D; /* Màu chữ tiêu đề */
 }
 
 /* Thông tin nhỏ */
@@ -67,7 +67,7 @@ h1 {
 
 p {
     font-size: 1.1em;
-    color: #F1D3D1; /* Màu chữ nhẹ nhàng, hài hòa */
+    color: #F2688D; /* Màu chữ nhẹ hơn */
     margin-bottom: 20px;
 }
 
@@ -84,7 +84,7 @@ p {
     display: inline-block;
     padding: 8px 16px;
     font-size: 0.9em;
-    background-color: #E74C3C; /* Màu nền đỏ nhẹ */
+    background-color: #F37EB5; /* Màu nút */
     color: white;
     text-decoration: none;
     border-radius: 20px;
@@ -93,7 +93,7 @@ p {
 }
 
 .links a:hover {
-    background-color: #C0392B; /* Màu nền khi hover */
+    background-color: #F2688D; /* Màu hover */
     transform: scale(1.05);
 }
 
