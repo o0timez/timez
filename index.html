@@ -113,6 +113,35 @@
             clickCount = 0;
         }, 300);
     });
+
+function toggleVolumeControl() {
+    if (!volumeControl) {
+        volumeControl = document.createElement("input");
+        volumeControl.type = "range";
+        volumeControl.min = "0";
+        volumeControl.max = "1";
+        volumeControl.step = "0.1";
+        volumeControl.value = audio.volume;
+        volumeControl.classList.add("volume-slider");
+
+        document.querySelector('.container').appendChild(volumeControl);
+        setTimeout(() => volumeControl.classList.add("show"), 50);
+
+        volumeControl.addEventListener("input", function () {
+            audio.volume = volumeControl.value;
+        });
+
+        setTimeout(() => {
+            if (volumeControl) {
+                volumeControl.classList.remove("show");
+                setTimeout(() => {
+                    volumeControl.remove();
+                    volumeControl = null;
+                }, 300);
+            }
+        }, 5000);
+    }
+}
 </script>
 
 
