@@ -19,19 +19,20 @@ body {
     padding: 20px;
     border-radius: 20px; /* Làm tròn các góc của container */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    transform: translateY(-10vh); /* Bắt đầu từ vị trí gần hơn */
-    animation: slideIn 0.8s ease-out forwards; /* Thêm hiệu ứng trôi */
+    opacity: 0; /* Bắt đầu từ trạng thái mờ */
+    transform: translateY(30px); /* Đặt phần tử bắt đầu từ dưới */
+    animation: fadeInUp 1s ease-out forwards; /* Thêm hiệu ứng trượt và mờ dần */
 }
 
-/* Hiệu ứng trôi */
-@keyframes slideIn {
+/* Hiệu ứng trượt và fade-in */
+@keyframes fadeInUp {
     0% {
-        transform: translateY(-10vh); /* Vị trí bắt đầu gần hơn */
         opacity: 0;
+        transform: translateY(30px); /* Bắt đầu trượt từ dưới lên */
     }
     100% {
-        transform: translateY(0); /* Đến vị trí ban đầu */
         opacity: 1;
+        transform: translateY(0); /* Kết thúc ở vị trí bình thường */
     }
 }
 
