@@ -13,6 +13,11 @@
 
 </head>
 <body>
+
+
+<audio id="music-player"></audio>
+
+
     <div class="container">
         <!-- Avatar -->
         <img src="images/citi.jpg" alt="Avatar TimeZ" class="avatar">
@@ -37,4 +42,78 @@
         </div>
     </div>
 </body>
+
+
+<script>
+    const avatar = document.querySelector('.avatar');
+    const audio = document.getElementById('music-player');
+    let clickCount = 0;
+    let timer;
+    let isPlaying = false;
+    let volumeControl;
+    let musicList = [
+        { title: "Bài hát 1", url: "https://www.youtube.com/watch?v=XXXXXXX" },
+        { title: "Bài hát 2", url: "https://www.youtube.com/watch?v=YYYYYYY" }
+    ];
+
+    function playMusic() {
+        let randomMusic = musicList[Math.floor(Math.random() * musicList.length)];
+        audio.src = `https://www.youtube.com/embed/${randomMusic.url.split("v=")[1]}?autoplay=1`;
+        audio.play().catch(error => console.log("Lỗi phát nhạc:", error));
+        
+        avatar.classList.add('playing');
+        isPlaying = true;
+    }
+
+    function stopMusic() {
+        audio.pause();
+        avatar.classList.remove('playing');
+        isPlaying = false;
+    }
+
+    function toggleVolumeControl() {
+        if (!volumeControl) {
+            volumeControl = document.createElement("input");
+            volumeControl.type = "range";
+            volumeControl.min = "0";
+            volumeControl.max = "1";
+            volumeControl.step = "0.1";
+            volumeControl.value = audio.volume;
+            volumeControl.classList.add("volume-slider");
+            document.body.appendChild(volumeControl);
+
+            volumeControl.addEventListener("input", function () {
+                audio.volume = volumeControl.value;
+            });
+
+            setTimeout(() => {
+                if (volumeControl) {
+                    volumeControl.remove();
+                    volumeControl = null;
+                }
+            }, 5000);
+        }
+    }
+
+    avatar.addEventListener("click", function () {
+        clickCount++;
+        clearTimeout(timer);
+
+        timer = setTimeout(() => {
+            if (clickCount === 1) {
+                if (!isPlaying) {
+                    playMusic();
+                } else {
+                    stopMusic();
+                }
+                toggleVolumeControl();
+            } else if (clickCount === 2) {
+                playMusic();
+            }
+            clickCount = 0;
+        }, 300);
+    });
+</script>
+
+
 </html>
