@@ -5,94 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TimeZ</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Thêm Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-
-
-
 </head>
 <body>
 
-
-<audio id="music-player"></audio>
-
-
     <div class="container">
-        <!-- Avatar -->
         <img src="images/citi.jpg" alt="Avatar TimeZ" class="avatar">
-        <!-- Tên và thông tin ngôn ngữ -->
         <h1>Cường</h1>
-       <p>
-    <img src="images/CatHeart.gif"  class="bio-icon"> 
-    I want love
-    <img src="images/CatHeart.gif" class="bio-icon">
-</p>
-         <p>speak: 🇻🇳🇨🇳🇱🇦🇹🇭🇺🇲</p>
-        
-        <!-- Các liên kết mạng xã hội -->
+        <p>
+            <img src="images/CatHeart.gif" class="bio-icon"> 
+            I want love
+            <img src="images/CatHeart.gif" class="bio-icon">
+        </p>
+        <p>speak: 🇻🇳🇨🇳🇱🇦🇹🇭🇺🇲</p>
+
         <div class="links">
             <a href="https://fb.com/o0TimeZ" target="_blank" class="btn">Facebook</a>
             <a href="https://instagram.com/o0timez" target="_blank" class="btn">Instagram</a>
             <a href="https://m.me/o0TimeZ" target="_blank" class="btn">Messenger</a>
             <a href="https://tiktok.com/@o0timez" target="_blank" class="btn">TikTok</a>
             <a href="https://youtube.com/@o0timez" target="_blank" class="btn">YouTube</a>
-             <a href="https://discordapp.com/users/634634219058102291" target="_blank" class="btn">Discord</a>
-             <a href="https://www.threads.net/@o0timez" target="_blank" class="btn">Threads</a>
+            <a href="https://discordapp.com/users/634634219058102291" target="_blank" class="btn">Discord</a>
+            <a href="https://www.threads.net/@o0timez" target="_blank" class="btn">Threads</a>
         </div>
     </div>
 
+    <div id="music-container">
+        <iframe id="youtube-player" width="0" height="0" frameborder="0" allow="autoplay"></iframe>
+    </div>
 
-
-<script>
+    <script>
     const avatar = document.querySelector('.avatar');
-    const audio = document.getElementById('music-player');
+    const youtubePlayer = document.getElementById('youtube-player');
     let clickCount = 0;
     let timer;
     let isPlaying = false;
-    let volumeControl;
+
     let musicList = [
-        { title: "Bài hát 1", url: "https://www.youtube.com/watch?v=nQVaRFP-ppw" },
-        { title: "Bài hát 2", url: "https://www.youtube.com/watch?v=YYYYYYY" }
+        { title: "Bài hát 1", url: "nQVaRFP-ppw" },
+        { title: "Bài hát 2", url: "abc123xyz" }  // Thay ID video hợp lệ
     ];
 
     function playMusic() {
+        if (isPlaying) return; // Nếu nhạc đang phát, không phát lại
         let randomMusic = musicList[Math.floor(Math.random() * musicList.length)];
-        audio.src = `https://www.youtube.com/embed/${randomMusic.url.split("v=")[1]}?autoplay=1`;
-        audio.play().catch(error => console.log("Lỗi phát nhạc:", error));
-        
+        youtubePlayer.src = `https://www.youtube.com/embed/${randomMusic.url}?autoplay=1&loop=1&playlist=${randomMusic.url}&controls=0`;
+
         avatar.classList.add('playing');
         isPlaying = true;
     }
 
     function stopMusic() {
-        audio.pause();
+        youtubePlayer.src = "";
         avatar.classList.remove('playing');
         isPlaying = false;
-    }
-
-    function toggleVolumeControl() {
-        if (!volumeControl) {
-            volumeControl = document.createElement("input");
-            volumeControl.type = "range";
-            volumeControl.min = "0";
-            volumeControl.max = "1";
-            volumeControl.step = "0.1";
-            volumeControl.value = audio.volume;
-            volumeControl.classList.add("volume-slider");
-            document.body.appendChild(volumeControl);
-
-            volumeControl.addEventListener("input", function () {
-                audio.volume = volumeControl.value;
-            });
-
-            setTimeout(() => {
-                if (volumeControl) {
-                    volumeControl.remove();
-                    volumeControl = null;
-                }
-            }, 5000);
-        }
     }
 
     avatar.addEventListener("click", function () {
@@ -106,45 +72,13 @@
                 } else {
                     stopMusic();
                 }
-                toggleVolumeControl();
             } else if (clickCount === 2) {
                 playMusic();
             }
             clickCount = 0;
         }, 300);
     });
-
-function toggleVolumeControl() {
-    if (!volumeControl) {
-        volumeControl = document.createElement("input");
-        volumeControl.type = "range";
-        volumeControl.min = "0";
-        volumeControl.max = "1";
-        volumeControl.step = "0.1";
-        volumeControl.value = audio.volume;
-        volumeControl.classList.add("volume-slider");
-
-        document.querySelector('.container').appendChild(volumeControl);
-        setTimeout(() => volumeControl.classList.add("show"), 50);
-
-        volumeControl.addEventListener("input", function () {
-            audio.volume = volumeControl.value;
-        });
-
-        setTimeout(() => {
-            if (volumeControl) {
-                volumeControl.classList.remove("show");
-                setTimeout(() => {
-                    volumeControl.remove();
-                    volumeControl = null;
-                }, 300);
-            }
-        }, 5000);
-    }
-}
-</script>
-
+    </script>
 
 </body>
-
 </html>
