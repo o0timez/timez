@@ -58,6 +58,12 @@ h1 {
 }
 
 /* Thông tin nhỏ */
+bio-icon {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle; /* Căn giữa với dòng chữ */
+    margin: 0 5px; /* Tạo khoảng cách giữa GIF và chữ */
+}
 p {
     font-size: 1.1em;
     color: #DDE7EF; /* Màu chữ nhẹ hơn */
