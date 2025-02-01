@@ -6,6 +6,7 @@
     <title>TimeZ</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://www.youtube.com/iframe_api"></script>
 </head>
 <body>
 
@@ -40,17 +41,12 @@
     </div>
 
     <script>
-        // Tải API YouTube trước khi chạy bất cứ đoạn script nào
-        const tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        document.head.appendChild(tag);
-
         let player;
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('youtube-player', {
                 height: '0',
                 width: '0',
-                videoId: 'nQVaRFP-ppw', // Video mặc định để khởi tạo player
+                videoId: 'nQVaRFP-ppw', 
                 playerVars: {
                     'autoplay': 0,
                     'controls': 0,
@@ -66,70 +62,68 @@
         }
 
         function onPlayerReady(event) {
-            event.target.setVolume(100); // Đảm bảo volume không bị tắt
+            event.target.setVolume(100);
         }
 
         function onPlayerStateChange(event) {
             if (event.data === YT.PlayerState.ENDED) {
-                event.target.playVideo(); // Tự động phát lại
+                event.target.playVideo();
             }
         }
 
-        const audioController = (() => {
-            const avatar = document.querySelector('.avatar');
-            const volumeControl = document.getElementById('volume-control');
-            const volumeSlider = document.getElementById('volume-slider');
+        const avatar = document.querySelector('.avatar');
+        const volumeSlider = document.getElementById('volume-slider');
+        let isPlaying = false;
+        let firstClick = true;
 
-            let isPlaying = false;
-            let volumeTimeout;
+        const musicList = [
+            { title: "Love For You", url: "nQVaRFP-ppw" },
+            { title: "Bài hát 2", url: "abc123xyz" }
+        ];
 
-            const musicList = [
-                { title: "Love For You", url: "nQVaRFP-ppw" },
-                { title: "Bài hát 2", url: "abc123xyz" }
-            ];
+        const playRandomMusic = () => {
+            const randomMusic = musicList[Math.floor(Math.random() * musicList.length)];
+            player.loadVideoById(randomMusic.url);
+            player.playVideo();
+        };
 
-            const playRandomMusic = () => {
-                const randomMusic = musicList[Math.floor(Math.random() * musicList.length)];
-                player.loadVideoById(randomMusic.url);
-                player.playVideo();
+        avatar.addEventListener('click', () => {
+            if (firstClick) {
+                playRandomMusic();
+                firstClick = false;
                 isPlaying = true;
-            };
+            } else {
+                volumeSlider.parentElement.classList.add('show-volume');
+                setTimeout(() => {
+                    volumeSlider.parentElement.classList.remove('show-volume');
+                }, 3000);
+            }
+        });
 
-            const handleAvatarClick = () => {
-                if (isPlaying) {
-                    player.pauseVideo();
-                    isPlaying = false;
-                } else {
-                    playRandomMusic();
-                }
-            };
+        avatar.addEventListener('dblclick', () => {
+            playRandomMusic();
+        });
 
-            const handleVolumeChange = (e) => {
-                player.setVolume(e.target.value);
-            };
-
-            const init = () => {
-                avatar.addEventListener('click', handleAvatarClick);
-                volumeSlider.addEventListener('input', handleVolumeChange);
-
-                volumeControl.addEventListener('mouseenter', () => {
-                    clearTimeout(volumeTimeout);
-                });
-
-                volumeControl.addEventListener('mouseleave', () => {
-                    volumeTimeout = setTimeout(() => {
-                        volumeControl.classList.remove('show-volume');
-                    }, 1000);
-                });
-            };
-
-            return { init };
-        })();
-
-        document.addEventListener('DOMContentLoaded', () => {
-            audioController.init();
+        volumeSlider.addEventListener('input', (e) => {
+            player.setVolume(e.target.value);
         });
     </script>
+
+    <style>
+        #volume-control {
+            display: none;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: opacity 0.3s;
+        }
+
+        #volume-control.show-volume {
+            display: block;
+            opacity: 1;
+        }
+    </style>
 
 </body>
 </html>
