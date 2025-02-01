@@ -1,7 +1,7 @@
 /* Màu nền và font chữ */
 body {
-    background-color: #F3D5DD; /* Màu hồng nhạt */
-    color: #F2688D; /* Màu chữ hồng đậm */
+    background-color: #F3D5DD;
+    color: #F2688D;
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
@@ -15,7 +15,7 @@ body {
 /* Cấu trúc container */
 .container {
     text-align: center;
-    background-color: #F2BDD1; /* Màu nền container */
+    background-color: #F2BDD1;
     padding: 40px;
     border-radius: 30px;
     box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
@@ -41,12 +41,22 @@ body {
     height: 120px;
     border-radius: 50%;
     margin-bottom: 20px;
-    border: 5px solid #F37EB5; /* Màu viền avatar */
-    transition: transform 0.3s ease-in-out;
+    border: 5px solid #F37EB5;
+    transition: all 0.3s ease-in-out;
+    transform-origin: center center;
 }
 
 .avatar:hover {
     transform: scale(1.1);
+}
+
+.avatar.playing {
+    animation: spin 8s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 /* Tiêu đề */
@@ -54,7 +64,7 @@ h1 {
     font-size: 2.3em;
     margin: 10px 0;
     font-weight: 600;
-    color: #F2688D; /* Màu chữ tiêu đề */
+    color: #F2688D;
 }
 
 /* Thông tin nhỏ */
@@ -67,7 +77,7 @@ h1 {
 
 p {
     font-size: 1.1em;
-    color: #F2688D; /* Màu chữ nhẹ hơn */
+    color: #F2688D;
     margin-bottom: 20px;
 }
 
@@ -84,7 +94,7 @@ p {
     display: inline-block;
     padding: 8px 16px;
     font-size: 0.9em;
-    background-color: #F37EB5; /* Màu nút */
+    background-color: #F37EB5;
     color: white;
     text-decoration: none;
     border-radius: 20px;
@@ -93,74 +103,24 @@ p {
 }
 
 .links a:hover {
-    background-color: #F2688D; /* Màu hover */
+    background-color: #F2688D;
     transform: scale(1.05);
 }
 
-/* Điều chỉnh style của các nút */
 .links a:active {
     transform: scale(0.98);
 }
 
-/* Cải thiện khoảng cách giữa các link */
-.links a:nth-child(1) {
-    margin-top: 0;
-}
-
-.links a:last-child {
-    margin-bottom: 0;
-}
-
-
+/* Volume Control */
 #volume-control {
-    display: none;
-    margin: 15px 0;
-    width: 200px;
+    opacity: 0;
+    width: 80%;
+    margin: 15px auto;
+    transition: opacity 0.3s ease;
 }
 
 #volume-control.show-volume {
-    display: block;
-    animation: volumeFadeIn 0.3s ease-out;
-}
-
-@keyframes volumeFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-5px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-/* ... Giữ nguyên các phần CSS cũ ... */
-
-/* Avatar xoay khi phát nhạc */
-.avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    margin-bottom: 20px;
-    border: 5px solid #F37EB5;
-    transition: all 0.3s ease-in-out;
-    transform-origin: center center;
-}
-
-.avatar.playing {
-    animation: spin 8s linear infinite;
-}
-
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-/* Thanh volume được thiết kế lại */
-.volume-container {
-    margin: 20px 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    opacity: 1;
 }
 
 input[type="range"] {
@@ -172,14 +132,12 @@ input[type="range"] {
     outline: none;
 }
 
-/* Track */
 input[type="range"]::-webkit-slider-runnable-track {
     height: 4px;
     background: linear-gradient(to right, #F2688D var(--fill-percent), #F2BDD1 var(--fill-percent));
     border-radius: 2px;
 }
 
-/* Thumb */
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 16px;
@@ -205,11 +163,22 @@ input[type="range"]:hover::-webkit-slider-thumb {
     transform: scale(1.1);
 }
 
-/* Hiệu ứng khi focus */
 input[type="range"]:focus {
     outline: none;
 }
 
 input[type="range"]:focus::-webkit-slider-thumb {
     box-shadow: 0 0 0 3px rgba(242, 104, 141, 0.2);
+}
+
+/* Hiệu ứng volume fade-in */
+@keyframes volumeFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
