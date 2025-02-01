@@ -1,8 +1,8 @@
 /* Màu nền và font chữ */
 body {
-    background-color: #181818; /* Màu nền đen đậm */
+    background-color: #234052; /* Màu nền xanh đậm */
     color: #fff; /* Màu chữ trắng */
-    font-family: 'Poppins', sans-serif; /* Sử dụng font chữ hiện đại */
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
@@ -15,23 +15,23 @@ body {
 /* Cấu trúc container */
 .container {
     text-align: center;
-    background-color: #222; /* Màu nền của container */
+    background-color: #567F95; /* Màu nền của container */
     padding: 40px;
-    border-radius: 30px; /* Góc tròn cho container */
+    border-radius: 30px;
     box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.4);
     width: 320px;
-    animation: fadeInUp 1s ease-out forwards; /* Hiệu ứng fade-in */
+    animation: fadeInUp 1s ease-out forwards;
 }
 
 /* Hiệu ứng fade-in */
 @keyframes fadeInUp {
     0% {
         opacity: 0;
-        transform: translateY(30px); /* Di chuyển từ dưới lên */
+        transform: translateY(30px);
     }
     100% {
         opacity: 1;
-        transform: translateY(0); /* Đạt vị trí bình thường */
+        transform: translateY(0);
     }
 }
 
@@ -39,14 +39,14 @@ body {
 .avatar {
     width: 120px;
     height: 120px;
-    border-radius: 50%; /* Avatar hình tròn */
+    border-radius: 50%;
     margin-bottom: 20px;
-    border: 5px solid #fff;
+    border: 5px solid #8FB6D7; /* Màu viền avatar */
     transition: transform 0.3s ease-in-out;
 }
 
 .avatar:hover {
-    transform: scale(1.1); /* Phóng to khi hover */
+    transform: scale(1.1);
 }
 
 /* Tiêu đề */
@@ -60,7 +60,7 @@ h1 {
 /* Thông tin nhỏ */
 p {
     font-size: 1.1em;
-    color: #ccc;
+    color: #DDE7EF; /* Màu chữ nhẹ hơn */
     margin-bottom: 20px;
 }
 
@@ -73,7 +73,7 @@ p {
     display: block;
     margin: 10px 0;
     padding: 14px 25px;
-    background-color: #4CAF50; /* Màu nền xanh */
+    background-color: #7299BA; /* Màu xanh nhạt */
     color: white;
     text-decoration: none;
     border-radius: 50px;
@@ -83,13 +83,13 @@ p {
 }
 
 .links a:hover {
-    background-color: #45a049; /* Màu nền xanh đậm khi hover */
-    transform: scale(1.05); /* Phóng to khi hover */
+    background-color: #638EB0; /* Màu hover */
+    transform: scale(1.05);
 }
 
 /* Điều chỉnh style của các nút */
 .links a:active {
-    transform: scale(0.98); /* Tạo hiệu ứng co lại khi click */
+    transform: scale(0.98);
 }
 
 /* Cải thiện khoảng cách giữa các link */
