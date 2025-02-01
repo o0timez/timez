@@ -19,14 +19,14 @@ body {
     padding: 20px;
     border-radius: 20px; /* Làm tròn các góc của container */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    transform: translateY(-20vh); /* Đảm bảo bắt đầu từ ngoài tầm nhìn */
+    transform: translateY(-10vh); /* Bắt đầu từ vị trí gần hơn */
     animation: slideIn 0.8s ease-out forwards; /* Thêm hiệu ứng trôi */
 }
 
 /* Hiệu ứng trôi */
 @keyframes slideIn {
     0% {
-        transform: translateY(-100vh); /* Bắt đầu từ ngoài màn hình */
+        transform: translateY(-10vh); /* Vị trí bắt đầu gần hơn */
         opacity: 0;
     }
     100% {
