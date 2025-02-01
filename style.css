@@ -182,3 +182,8 @@ input[type="range"]:focus::-webkit-slider-thumb {
         transform: translateY(0);
     }
 }
+
+/* Ẩn player YouTube */
+#music-container iframe {
+    display: none;
+}
