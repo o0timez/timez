@@ -69,8 +69,32 @@ p {
     color: #DDE7EF; /* Màu chữ nhẹ hơn */
     margin-bottom: 20px;
 }
-
 /* Các nút link */
+.links {
+    margin-top: 20px;
+    display: flex; /* Sắp xếp theo hàng ngang */
+    justify-content: center; /* Căn giữa */
+    flex-wrap: wrap; /* Xuống hàng nếu không đủ chỗ */
+    gap: 8px; /* Tạo khoảng cách giữa các nút */
+}
+
+.links a {
+    display: inline-block; /* Giữ nút ở dạng inline */
+    padding: 8px 16px; /* Giảm kích thước nút */
+    font-size: 0.9em; /* Thu nhỏ chữ */
+    background-color: #7299BA; /* Màu nền */
+    color: white;
+    text-decoration: none;
+    border-radius: 20px; /* Bo góc nhẹ */
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+.links a:hover {
+    background-color: #638EB0;
+    transform: scale(1.05);
+}
+/* Các nút link
 .links {
     margin-top: 20px;
 }
@@ -86,13 +110,13 @@ p {
     font-size: 1.1em;
     font-weight: 500;
     transition: background-color 0.3s, transform 0.2s ease-in-out;
-}
+} 
 
 .links a:hover {
     background-color: #638EB0; /* Màu hover */
     transform: scale(1.05);
 }
-
+ */
 /* Điều chỉnh style của các nút */
 .links a:active {
     transform: scale(0.98);
