@@ -184,6 +184,16 @@ input[type="range"]:focus::-webkit-slider-thumb {
 }
 
 /* Ẩn player YouTube */
+
 #music-container iframe {
     display: none;
+}
+
+#volume-control {
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+#volume-control.show-volume {
+    opacity: 1;
 }
