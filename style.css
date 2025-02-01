@@ -1,81 +1,83 @@
-/* Reset margin, padding, box-sizing */
-* {
+/* Đặt màu nền xám đen cho toàn bộ trang */
+body {
+    background-color: #333; /* Màu nền xám đen */
+    color: #fff; /* Màu chữ trắng */
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
 }
 
-/* Body styling */
-body {
-    background-color: #121212;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    padding: 20px;
-}
-
-/* Main container */
+/* Cấu trúc chung của trang */
 .container {
-    width: 100%;
-    max-width: 380px;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: #444; /* Màu nền hộp chứa */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-20px); /* Hiệu ứng trôi */
+    animation: slideIn 0.5s ease-out forwards; /* Thêm hiệu ứng trôi */
 }
 
-/* Profile styling */
-.profile {
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #f0f0f0;
+/* Hiệu ứng trôi */
+@keyframes slideIn {
+    0% {
+        transform: translateY(-50px); /* Bắt đầu từ phía trên */
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0); /* Đến vị trí ban đầu */
+        opacity: 1;
+    }
 }
 
+/* Avatar */
 .avatar {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    object-fit: cover;
-    border: 5px solid #ff6f61;
     margin-bottom: 20px;
+    border: 4px solid #fff;
+    transition: transform 0.3s ease; /* Hiệu ứng zoom */
 }
 
+.avatar:hover {
+    transform: scale(1.1); /* Phóng to khi hover */
+}
+
+/* Tiêu đề */
 h1 {
-    font-size: 30px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 5px;
+    font-size: 2.5em;
+    margin: 10px 0;
 }
 
-.bio {
-    font-size: 14px;
-    color: #888;
+/* Thông tin nhỏ */
+p {
+    font-size: 1.2em;
+    color: #ccc;
 }
 
-/* Links and buttons styling */
+/* Các nút link */
 .links {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    margin-top: 20px;
 }
 
-.btn {
-    text-decoration: none;
-    background-color: #ff6f61;
+.links a {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 24px;
+    background-color: #1a73e8;
     color: white;
-    padding: 15px;
-    border-radius: 30px;
-    font-size: 18px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
 }
 
-.btn:hover {
-    background-color: #e15a50;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-}
-
-.btn:active {
-    transform: translateY(2px);
+.links a:hover {
+    background-color: #0c59c2;
 }
