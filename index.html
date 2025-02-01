@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TimeZ</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet>
 </head>
 <body>
 
@@ -25,32 +25,37 @@
         <p>speak: 🇻🇳🇨🇳🇱🇦🇹🇭🇺🇲</p>
 
         <div class="links">
-            <a href="https://fb.com/o0TimeZ" target="_blank" class="btn">Facebook</a>
-            <a href="https://instagram.com/o0timez" target="_blank" class="btn">Instagram</a>
-            <a href="https://m.me/o0TimeZ" target="_blank" class="btn">Messenger</a>
-            <a href="https://tiktok.com/@o0timez" target="_blank" class="btn">TikTok</a>
-            <a href="https://youtube.com/@o0timez" target="_blank" class="btn">YouTube</a>
-            <a href="https://discordapp.com/users/634634219058102291" target="_blank" class="btn">Discord</a>
-            <a href="https://www.threads.net/@o0timez" target="_blank" class="btn">Threads</a>
+            <!-- Các nút link giữ nguyên -->
         </div>
     </div>
 
     <div id="music-container">
-        <iframe 
-            id="youtube-player" 
-            width="0" 
-            height="0" 
-            frameborder="0" 
-            allow="autoplay; encrypted-media" 
-            allowfullscreen
-            title="YouTube Music Player"
-        ></iframe>
+        <div id="youtube-player"></div>
     </div>
 
     <script>
+// Khởi tạo YouTube Player
+let player;
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('youtube-player', {
+        height: '0',
+        width: '0',
+        playerVars: {
+            'autoplay': 0,
+            'controls': 0,
+            'disablekb': 1,
+            'modestbranding': 1,
+            'playsinline': 1
+        },
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
+
 const audioController = (() => {
     const avatar = document.querySelector('.avatar');
-    const youtubePlayer = document.getElementById('youtube-player');
     const volumeControl = document.getElementById('volume-control');
     const volumeSlider = document.getElementById('volume-slider');
 
@@ -62,20 +67,33 @@ const audioController = (() => {
     const musicList = [
         { 
             title: "Love For You", 
-            url: "nQVaRFP-ppw" // Chỉ giữ lại video ID
+            url: "nQVaRFP-ppw"
         },
         { 
             title: "Bài hát 2", 
-            url: "abc123xyz" // Thay bằng video ID thực tế
+            url: "abc123xyz"
         }
     ];
 
+    // Hàm xử lý trạng thái player
+    function onPlayerReady(event) {
+        event.target.setVolume(100);
+    }
+
+    function onPlayerStateChange(event) {
+        if (event.data === YT.PlayerState.PLAYING) {
+            avatar.classList.add('playing');
+            isPlaying = true;
+        } else {
+            avatar.classList.remove('playing');
+            isPlaying = false;
+        }
+    }
+
     const handleAvatarClick = () => {
         clickCount++;
-        
         if (clickCount === 1) {
             clickTimer = setTimeout(() => {
-                // Xử lý click đơn
                 if (!isPlaying) {
                     playRandomMusic();
                 }
@@ -83,9 +101,12 @@ const audioController = (() => {
                 clickCount = 0;
             }, 300);
         } else if (clickCount === 2) {
-            // Xử lý double click
             clearTimeout(clickTimer);
-            playRandomMusic();
+            if (isPlaying) {
+                player.pauseVideo();
+            } else {
+                playRandomMusic();
+            }
             showVolumeControl();
             clickCount = 0;
         }
@@ -93,11 +114,8 @@ const audioController = (() => {
 
     const playRandomMusic = () => {
         const randomMusic = musicList[Math.floor(Math.random() * musicList.length)];
-        youtubePlayer.src = `https://www.youtube.com/embed/${randomMusic.url}?autoplay=1&loop=1&playlist=${randomMusic.url}&controls=0`;
-        if (!isPlaying) {
-            avatar.classList.add('playing');
-            isPlaying = true;
-        }
+        player.loadVideoById(randomMusic.url);
+        player.playVideo();
     };
 
     const showVolumeControl = () => {
@@ -109,25 +127,12 @@ const audioController = (() => {
     };
 
     const handleVolumeChange = (e) => {
-        const volume = e.target.value / 100;
-        try {
-            youtubePlayer.contentWindow.postMessage(
-                JSON.stringify({
-                    event: 'command',
-                    func: 'setVolume',
-                    args: [volume * 100]
-                }),
-                '*'
-            );
-        } catch (error) {
-            console.error('Lỗi điều chỉnh âm lượng:', error);
-        }
+        const volume = e.target.value;
+        player.setVolume(volume);
     };
 
     const init = () => {
-        // Ẩn thanh volume mặc định
         volumeControl.classList.remove('show-volume');
-        
         avatar.addEventListener('click', handleAvatarClick);
         volumeSlider.addEventListener('input', handleVolumeChange);
 
@@ -145,7 +150,15 @@ const audioController = (() => {
     return { init };
 })();
 
-document.addEventListener('DOMContentLoaded', audioController.init);
+// Khởi tạo khi trang load xong
+document.addEventListener('DOMContentLoaded', () => {
+    // Thêm YouTube API script
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.body.appendChild(tag);
+    
+    audioController.init();
+});
     </script>
 
 </body>
