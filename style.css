@@ -51,6 +51,12 @@ body {
 
 
 
+/* Ẩn trình phát nhạc để không bị lộ */
+#music-container {
+    display: none;
+}
+
+/* Khi nhạc đang phát, avatar sẽ quay */
 .avatar.playing {
     animation: rotate 2s linear infinite;
 }
