@@ -1,6 +1,6 @@
 /* Màu nền và font chữ */
 body {
-    background-color: #234052; /* Màu nền xanh đậm */
+    background-color: #F5B7B1; /* Màu nền hồng phấn anh đào */
     color: #fff; /* Màu chữ trắng */
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -15,7 +15,7 @@ body {
 /* Cấu trúc container */
 .container {
     text-align: center;
-    background-color: #567F95; /* Màu nền của container */
+    background-color: #F7B8B3; /* Màu nền nhạt hơn của container */
     padding: 40px;
     border-radius: 30px;
     box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.4);
@@ -41,7 +41,7 @@ body {
     height: 120px;
     border-radius: 50%;
     margin-bottom: 20px;
-    border: 5px solid #8FB6D7; /* Màu viền avatar */
+    border: 5px solid #F5C6C0; /* Màu viền avatar sáng hơn */
     transition: transform 0.3s ease-in-out;
 }
 
@@ -58,65 +58,45 @@ h1 {
 }
 
 /* Thông tin nhỏ */
-bio-icon {
+.bio-icon {
     width: 20px;
     height: 20px;
-    vertical-align: middle; /* Căn giữa với dòng chữ */
-    margin: 0 5px; /* Tạo khoảng cách giữa GIF và chữ */
+    vertical-align: middle;
+    margin: 0 5px;
 }
+
 p {
     font-size: 1.1em;
-    color: #DDE7EF; /* Màu chữ nhẹ hơn */
+    color: #F1D3D1; /* Màu chữ nhẹ nhàng, hài hòa */
     margin-bottom: 20px;
 }
+
 /* Các nút link */
 .links {
     margin-top: 20px;
-    display: flex; /* Sắp xếp theo hàng ngang */
-    justify-content: center; /* Căn giữa */
-    flex-wrap: wrap; /* Xuống hàng nếu không đủ chỗ */
-    gap: 8px; /* Tạo khoảng cách giữa các nút */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .links a {
-    display: inline-block; /* Giữ nút ở dạng inline */
-    padding: 8px 16px; /* Giảm kích thước nút */
-    font-size: 0.9em; /* Thu nhỏ chữ */
-    background-color: #7299BA; /* Màu nền */
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 0.9em;
+    background-color: #E74C3C; /* Màu nền đỏ nhẹ */
     color: white;
     text-decoration: none;
-    border-radius: 20px; /* Bo góc nhẹ */
+    border-radius: 20px;
     font-weight: 500;
     transition: background-color 0.3s, transform 0.2s ease-in-out;
 }
 
 .links a:hover {
-    background-color: #638EB0;
+    background-color: #C0392B; /* Màu nền khi hover */
     transform: scale(1.05);
 }
-/* Các nút link
-.links {
-    margin-top: 20px;
-}
 
-.links a {
-    display: block;
-    margin: 10px 0;
-    padding: 14px 25px;
-    background-color: #7299BA; /* Màu xanh nhạt */
-    color: white;
-    text-decoration: none;
-    border-radius: 50px;
-    font-size: 1.1em;
-    font-weight: 500;
-    transition: background-color 0.3s, transform 0.2s ease-in-out;
-} 
-
-.links a:hover {
-    background-color: #638EB0; /* Màu hover */
-    transform: scale(1.05);
-}
- */
 /* Điều chỉnh style của các nút */
 .links a:active {
     transform: scale(0.98);
