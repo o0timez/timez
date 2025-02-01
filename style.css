@@ -1,52 +1,112 @@
-Em xem giúp anh xem đoạn code css này có sai ở đâu không
+/* Màu nền và font chữ */
+body {
+    background-color: #F3D5DD; /* Màu hồng nhạt */
+    color: #F2688D; /* Màu chữ hồng đậm */
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
 
-/* Màu nền và font chữ / body { background-color: #F3D5DD; / Màu hồng nhạt / color: #F2688D; / Màu chữ hồng đậm */ font-family: 'Poppins', sans-serif; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+/* Cấu trúc container */
+.container {
+    text-align: center;
+    background-color: #F2BDD1; /* Màu nền container */
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+    width: 320px;
+    animation: fadeInUp 1s ease-out forwards;
+}
 
-/* Cấu trúc container / .container { text-align: center; background-color: #F2BDD1; / Màu nền container */ padding: 40px; border-radius: 30px; box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2); width: 320px; animation: fadeInUp 1s ease-out forwards; }
+/* Hiệu ứng fade-in */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-/* Hiệu ứng fade-in */ @keyframes fadeInUp { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
+/* Avatar */
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 5px solid #F37EB5; /* Màu viền avatar */
+    transition: transform 0.3s ease-in-out;
+}
 
-/* Avatar / .avatar { width: 120px; height: 120px; border-radius: 50%; margin-bottom: 20px; border: 5px solid #F37EB5; / Màu viền avatar */ transition: transform 0.3s ease-in-out; }
+.avatar:hover {
+    transform: scale(1.1);
+}
 
-.avatar:hover { transform: scale(1.1); }
+/* Tiêu đề */
+h1 {
+    font-size: 2.3em;
+    margin: 10px 0;
+    font-weight: 600;
+    color: #F2688D; /* Màu chữ tiêu đề */
+}
 
-/* Ẩn trình phát nhạc để không bị lộ */ #music-container { display: none; }
+/* Thông tin nhỏ */
+.bio-icon {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin: 0 5px;
+}
 
-/* Khi nhạc đang phát, avatar sẽ quay */ .avatar.playing { animation: rotate 2s linear infinite; }
+p {
+    font-size: 1.1em;
+    color: #F2688D; /* Màu chữ nhẹ hơn */
+    margin-bottom: 20px;
+}
 
-@keyframes rotate { 100% { transform: rotate(360deg); } }
+/* Các nút link */
+.links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
 
-.volume-slider { position: absolute; bottom: -5px; /* Đặt ngay dưới avatar / left: 50%; transform: translateX(-50%); width: 150px; height: 6px; background: #ddd; / Màu nền nhạt */ border-radius: 5px; outline: none; -webkit-appearance: none; appearance: none; }
+.links a {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 0.9em;
+    background-color: #F37EB5; /* Màu nút */
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
 
-/* Tùy chỉnh màu thanh trượt / .volume-slider::-webkit-slider-runnable-track { background: linear-gradient(to right, #ff9a9e, #fad0c4); / Màu gradient nhẹ nhàng */ height: 6px; border-radius: 5px; }
+.links a:hover {
+    background-color: #F2688D; /* Màu hover */
+    transform: scale(1.05);
+}
 
-.volume-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; background: #ff6b81; /* Màu hồng nhẹ */ border-radius: 50%; cursor: pointer; margin-top: -4px; }
+/* Điều chỉnh style của các nút */
+.links a:active {
+    transform: scale(0.98);
+}
 
-.volume-slider::-moz-range-track { background: linear-gradient(to right, #ff9a9e, #fad0c4); height: 6px; border-radius: 5px; }
+/* Cải thiện khoảng cách giữa các link */
+.links a:nth-child(1) {
+    margin-top: 0;
+}
 
-.volume-slider::-moz-range-thumb { width: 14px; height: 14px; background: #ff6b81; border-radius: 50%; cursor: pointer; }
-
-/* Hiệu ứng fade-in */ @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-.volume-slider { opacity: 0; transition: opacity 0.3s ease-in-out; }
-
-.volume-slider.show { opacity: 1; animation: fadeIn 0.3s ease-in-out; }
-
-/* Tiêu đề / h1 { font-size: 2.3em; margin: 10px 0; font-weight: 600; color: #F2688D; / Màu chữ tiêu đề */ }
-
-/* Thông tin nhỏ */ .bio-icon { width: 20px; height: 20px; vertical-align: middle; margin: 0 5px; }
-
-p { font-size: 1.1em; color: #F2688D; /* Màu chữ nhẹ hơn */ margin-bottom: 20px; }
-
-/* Các nút link */ .links { margin-top: 20px; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
-
-.links a { display: inline-block; padding: 8px 16px; font-size: 0.9em; background-color: #F37EB5; /* Màu nút */ color: white; text-decoration: none; border-radius: 20px; font-weight: 500; transition: background-color 0.3s, transform 0.2s ease-in-out; }
-
-.links a:hover { background-color: #F2688D; /* Màu hover */ transform: scale(1.05); }
-
-/* Điều chỉnh style của các nút */ .links a:active { transform: scale(0.98); }
-
-/* Cải thiện khoảng cách giữa các link */ .links a:nth-child(1) { margin-top: 0; }
-
-.links a:last-child { margin-bottom: 0; }
-
+.links a:last-child {
+    margin-bottom: 0;
+}
