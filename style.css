@@ -49,8 +49,6 @@ body {
     transform: scale(1.1);
 }
 
-
-
 /* Ẩn trình phát nhạc để không bị lộ */
 #music-container {
     display: none;
@@ -67,6 +65,7 @@ body {
     }
 }
 
+/* Thanh trượt volume */
 .volume-slider {
     position: absolute;
     bottom: -5px; /* Đặt ngay dưới avatar */
@@ -79,6 +78,13 @@ body {
     outline: none;
     -webkit-appearance: none;
     appearance: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.volume-slider.show {
+    opacity: 1;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
 /* Tùy chỉnh màu thanh trượt */
@@ -124,25 +130,6 @@ body {
         transform: translateY(0);
     }
 }
-
-.volume-slider {
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.volume-slider.show {
-    opacity: 1;
-    animation: fadeIn 0.3s ease-in-out;
-}
-
-
-
-
-
-
-
-
-
 
 /* Tiêu đề */
 h1 {
