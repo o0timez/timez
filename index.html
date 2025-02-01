@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TimeZ</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -25,7 +25,13 @@
         <p>speak: 🇻🇳🇨🇳🇱🇦🇹🇭🇺🇲</p>
 
         <div class="links">
-            <!-- Các nút link giữ nguyên -->
+            <a href="https://fb.com/o0TimeZ" target="_blank" class="btn">Facebook</a>
+            <a href="https://instagram.com/o0timez" target="_blank" class="btn">Instagram</a>
+            <a href="https://m.me/o0TimeZ" target="_blank" class="btn">Messenger</a>
+            <a href="https://tiktok.com/@o0timez" target="_blank" class="btn">TikTok</a>
+            <a href="https://youtube.com/@o0timez" target="_blank" class="btn">YouTube</a>
+            <a href="https://discordapp.com/users/634634219058102291" target="_blank" class="btn">Discord</a>
+            <a href="https://www.threads.net/@o0timez" target="_blank" class="btn">Threads</a>
         </div>
     </div>
 
@@ -34,7 +40,6 @@
     </div>
 
     <script>
-// Khởi tạo YouTube Player
 let player;
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('youtube-player', {
@@ -75,7 +80,6 @@ const audioController = (() => {
         }
     ];
 
-    // Hàm xử lý trạng thái player
     function onPlayerReady(event) {
         event.target.setVolume(100);
     }
@@ -84,14 +88,14 @@ const audioController = (() => {
         if (event.data === YT.PlayerState.PLAYING) {
             avatar.classList.add('playing');
             isPlaying = true;
-        } else {
-            avatar.classList.remove('playing');
-            isPlaying = false;
+        } else if (event.data === YT.PlayerState.ENDED) {
+            event.target.playVideo();
         }
     }
 
     const handleAvatarClick = () => {
         clickCount++;
+        
         if (clickCount === 1) {
             clickTimer = setTimeout(() => {
                 if (!isPlaying) {
@@ -102,19 +106,20 @@ const audioController = (() => {
             }, 300);
         } else if (clickCount === 2) {
             clearTimeout(clickTimer);
-            if (isPlaying) {
-                player.pauseVideo();
-            } else {
-                playRandomMusic();
-            }
-            showVolumeControl();
+            playRandomMusic();
             clickCount = 0;
         }
     };
 
     const playRandomMusic = () => {
         const randomMusic = musicList[Math.floor(Math.random() * musicList.length)];
-        player.loadVideoById(randomMusic.url);
+        player.loadVideoById({
+            videoId: randomMusic.url,
+            playerVars: {
+                'loop': 1,
+                'playlist': randomMusic.url
+            }
+        });
         player.playVideo();
     };
 
@@ -150,13 +155,10 @@ const audioController = (() => {
     return { init };
 })();
 
-// Khởi tạo khi trang load xong
 document.addEventListener('DOMContentLoaded', () => {
-    // Thêm YouTube API script
     const tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     document.body.appendChild(tag);
-    
     audioController.init();
 });
     </script>
