@@ -6,6 +6,70 @@
     <title>TimeZ</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Các style mặc định cho trang web */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .avatar.playing {
+            transform: scale(1.1);
+        }
+
+        #volume-control {
+            display: none;
+            margin-top: 10px;
+            text-align: center;
+            transition: opacity 0.3s ease;
+        }
+
+        #volume-slider {
+            width: 80%;
+            max-width: 300px;
+            background: #444;
+            border-radius: 10px;
+            height: 10px;
+        }
+
+        /* Màu sắc cho thanh điều chỉnh âm lượng */
+        #volume-slider::-webkit-slider-runnable-track {
+            background: #5C6BC0;
+            border-radius: 5px;
+            height: 10px;
+        }
+
+        #volume-slider::-webkit-slider-thumb {
+            background: #ff5722;
+            border-radius: 50%;
+            height: 20px;
+            width: 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #volume-slider:focus {
+            outline: none;
+        }
+
+        /* Tùy chỉnh thêm nếu cần */
+    </style>
 </head>
 <body>
 
@@ -34,9 +98,16 @@
         <iframe id="youtube-player" width="0" height="0" frameborder="0" allow="autoplay"></iframe>
     </div>
 
+    <!-- Thanh trượt điều chỉnh âm lượng -->
+    <div id="volume-control">
+        <input type="range" id="volume-slider" min="0" max="100" value="100" />
+    </div>
+
     <script>
     const avatar = document.querySelector('.avatar');
     const youtubePlayer = document.getElementById('youtube-player');
+    const volumeControl = document.getElementById('volume-control');
+    const volumeSlider = document.getElementById('volume-slider');
     let clickCount = 0;
     let timer;
     let isPlaying = false;
@@ -69,15 +140,31 @@
             if (clickCount === 1) {
                 if (!isPlaying) {
                     playMusic();
-                } else {
-                    stopMusic();
                 }
             } else if (clickCount === 2) {
                 playMusic();
             }
             clickCount = 0;
         }, 300);
+
+        // Hiển thị thanh trượt khi nhấn vào avatar
+        volumeControl.style.display = 'block';
+
+        // Cài đặt thời gian ẩn thanh trượt sau 3 giây không thao tác
+        setTimeout(() => {
+            volumeControl.style.display = 'none';
+        }, 3000);
     });
+
+    // Xử lý sự kiện điều chỉnh âm lượng
+    volumeSlider.addEventListener("input", function () {
+        const volume = volumeSlider.value / 100; // Chuyển đổi giá trị từ 0-100 thành 0-1
+        youtubePlayer.contentWindow.postMessage(
+            JSON.stringify({ event: 'command', func: 'setVolume', args: [volume * 100] }),
+            '*'
+        );
+    });
+
     </script>
 
 </body>
