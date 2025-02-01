@@ -37,8 +37,8 @@ function onPlayerStateChange(event) {
 }
 
 const musicList = [
-    { title: "Love For You", url: "nQVaRFP-ppw", image: "images/song1.jpg" },
-    { title: "Bài hát 2", url: "abc123xyz", image: "images/song2.jpg" },
+    { title: "Love For You", url: "nQVaRFP-ppw", image: "images/citi.jpg" },
+    { title: "Bài hát 2", url: "abc123xyz", image: "images/citi.jpg" },
     { title: "Bài hát 3", url: "def456uvw", image: "" }
 ];
 
