@@ -45,7 +45,8 @@ window.onload = function () {
                 'onStateChange': onPlayerStateChange
             }
         });
-    }
+    }     // Định nghĩa API sau khi khai báo hàm onYouTubeIframeAPIReady
+window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
 
     function onPlayerStateChange(event) {
         if (event.data === YT.PlayerState.PLAYING) {
