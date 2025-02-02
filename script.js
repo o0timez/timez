@@ -36,7 +36,7 @@ window.onload = function () {
         } catch (error) {
             console.error("⛔ Lỗi khi tải YouTube API! Chuyển sang phát nhạc offline...");
             useYouTube = false;
-            playRandomMusic(); // Chuyển sang Audio Player
+            playRandomMusic();
         }
     }
 
@@ -63,13 +63,23 @@ window.onload = function () {
         { title: "Bài hát 3", url: "def456uvw", file: "music/song3.mp3", image: "images/citi.jpg" }
     ];
 
+    let currentMusic = musicList[0]; // Lưu trữ bài hát hiện tại
+
     function playRandomMusic() {
-        const randomMusic = musicList[Math.floor(Math.random() * musicList.length)];
+        let availableMusic = musicList.filter(music => music.url || music.file); // Lọc những bài hát có nguồn hợp lệ
+        let randomMusic = availableMusic[Math.floor(Math.random() * availableMusic.length)];
+
+        if (!randomMusic) {
+            console.warn("⚠ Không tìm thấy nhạc khả dụng! Giữ nguyên nhạc cũ.");
+            return;
+        }
+
+        currentMusic = randomMusic;
         console.log(`🎵 Đang phát: ${randomMusic.title}`);
 
         if (useYouTube && player && typeof player.loadVideoById === 'function') {
             player.loadVideoById(randomMusic.url);
-            setTimeout(() => { 
+            setTimeout(() => {
                 if (player && typeof player.playVideo === 'function') {
                     player.playVideo();
                 }
@@ -84,18 +94,15 @@ window.onload = function () {
     }
 
     avatar.addEventListener('click', (event) => {
+        // Không còn chức năng tạm dừng khi chạm vào avatar
         if (useYouTube && player && typeof player.getPlayerState === 'function') {
             const state = player.getPlayerState();
-            if (state === YT.PlayerState.PAUSED || state === YT.PlayerState.ENDED || state === YT.PlayerState.CUED) {
+            if (state !== YT.PlayerState.PLAYING) {
                 player.playVideo();
-            } else {
-                player.pauseVideo();
             }
         } else {
             if (audioPlayer.paused) {
                 audioPlayer.play();
-            } else {
-                audioPlayer.pause();
             }
         }
 
@@ -105,7 +112,12 @@ window.onload = function () {
     });
 
     avatar.addEventListener('dblclick', (event) => {
+        let previousMusic = currentMusic;
         playRandomMusic();
+        if (currentMusic === previousMusic) {
+            console.warn("⚠ Không tìm thấy nhạc mới, giữ nguyên bài hát cũ.");
+        }
+
         volumeControl.style.opacity = '1';
         setTimeout(() => { volumeControl.style.opacity = '0'; }, 3000);
         showTapEffect(event);
