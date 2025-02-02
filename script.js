@@ -60,13 +60,16 @@ function playRandomMusic() {
 
 // Sự kiện khi nhấn vào avatar
 avatar.addEventListener('click', (event) => {
-    if (!player || typeof player.getPlayerState !== 'function') return;
+    if (!player || typeof player.getPlayerState !== 'function') {
+        console.error('Player is not ready');
+        return;
+    }
 
     const state = player.getPlayerState();
-    if (state === -1 || state === YT.PlayerState.ENDED || state === YT.PlayerState.CUED) {
-        playRandomMusic(); // Phát nhạc mới nếu đang dừng hoặc hết bài
-    } else if (state !== YT.PlayerState.PLAYING) {
-        player.playVideo(); // Tiếp tục phát nếu nhạc đang tạm dừng
+    if (state === YT.PlayerState.PAUSED || state === YT.PlayerState.ENDED || state === YT.PlayerState.CUED) {
+        player.playVideo(); // Phát nhạc nếu đang tạm dừng hoặc hết bài
+    } else if (state === -1 || state === YT.PlayerState.PLAYING) {
+        player.pauseVideo(); // Dừng nhạc nếu đang phát
     }
 
     // Hiện thanh volume khi nhấn vào avatar
@@ -97,7 +100,9 @@ avatar.addEventListener('dblclick', (event) => {
 
 // Điều chỉnh âm lượng
 document.getElementById('volume-slider').addEventListener('input', (e) => {
-    player.setVolume(e.target.value);
+    if (player) {
+        player.setVolume(e.target.value);
+    }
 });
 
 // Hiệu ứng chạm vào (hiện hình ảnh nhỏ ở vị trí chạm)
