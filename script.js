@@ -58,7 +58,7 @@ window.onload = function () {
     }
 
     const musicList = [
-        { title: "Love For You", url: "nQVaRFP-ppw", file: "music/song1.mp3", image: "images/citi.jpg" },
+        { title: "Love For You", url: "nQVaRFP-ppw", file: "music/loveli.mp3", image: "images/citi.jpg" },
         { title: "PoPiPo", url: "TNf3GPizM58", file: "music/song2.mp3", image: "images/citi.jpg" },
         { title: "Bài hát 3", url: "def456uvw", file: "music/song3.mp3", image: "images/citi.jpg" }
     ];
