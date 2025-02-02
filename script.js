@@ -5,14 +5,14 @@ window.onload = function () {
     let volumeSlider = document.getElementById('volume-slider');
 
     if (!avatar || !volumeControl || !volumeSlider) {
-        console.error("Không tìm thấy một số phần tử HTML cần thiết.");
+        console.error("❌ Không tìm thấy một số phần tử HTML cần thiết.");
         return;
     }
 
     volumeControl.style.opacity = '0';
 
     function onYouTubeIframeAPIReady() {
-        console.log("YouTube API Loaded!"); // Debug
+        console.log("✅ YouTube API Loaded!"); // Debug
         player = new YT.Player('youtube-player', {
             height: '0',
             width: '0',
@@ -32,7 +32,7 @@ window.onload = function () {
     }
 
     function onPlayerReady(event) {
-        console.log("YouTube Player Ready!"); // Debug
+        console.log("✅ YouTube Player Ready!"); // Debug
         event.target.setVolume(100);
     }
 
@@ -58,16 +58,20 @@ window.onload = function () {
         const randomMusic = musicList[Math.floor(Math.random() * musicList.length)];
         if (player && typeof player.loadVideoById === 'function') {
             player.loadVideoById(randomMusic.url);
-            player.playVideo();
+            setTimeout(() => { 
+                if (player && typeof player.playVideo === 'function') {
+                    player.playVideo();
+                }
+            }, 3000); // Thêm delay 3s trước khi phát
             avatar.src = randomMusic.image && randomMusic.image.trim() !== "" ? randomMusic.image : "images/citi.jpg";
         } else {
-            console.error('Player is not initialized properly');
+            console.error('❌ Player chưa khởi tạo hoặc chưa sẵn sàng!');
         }
     }
 
     avatar.addEventListener('click', (event) => {
         if (!player || typeof player.getPlayerState !== 'function') {
-            console.error('Player is not ready');
+            console.error('⛔ Player chưa sẵn sàng! Thử lại sau.');
             return;
         }
 
