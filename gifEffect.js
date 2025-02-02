@@ -51,7 +51,6 @@ const gifList = [
 ];
 
 let currentGif = null; // Variable to store the currently displayed GIF
-let timeoutId = null;   // Variable to store the timeout ID
 
 function showTapEffect(event) {
   // Remove the current GIF if it exists
@@ -59,8 +58,6 @@ function showTapEffect(event) {
     document.body.removeChild(currentGif);
     currentGif = null;
   }
-  // Clear any pending timeout
-    clearTimeout(timeoutId);
 
   // Chọn ngẫu nhiên một GIF từ danh sách
   let randomIndex = Math.floor(Math.random() * gifList.length);
@@ -78,20 +75,9 @@ function showTapEffect(event) {
   tapEffect.style.top = `${event.clientY - 25}px`;
   tapEffect.style.pointerEvents = "none";
   tapEffect.style.opacity = "1";
-  tapEffect.style.transition = "opacity 0.5s ease-out";
 
   document.body.appendChild(tapEffect);
   currentGif = tapEffect; // Store the current GIF
-
-  timeoutId = setTimeout(() => {
-    tapEffect.style.opacity = "0";
-    timeoutId = setTimeout(() => {
-      if (currentGif === tapEffect) {
-        document.body.removeChild(tapEffect);
-        currentGif = null;
-      }
-    }, 500);
-  }, 500);
 }
 
 // Thêm event listener cho document
