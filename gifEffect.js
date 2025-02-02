@@ -50,13 +50,24 @@ const gifList = [
   "nuko/nukoSukiLoveYou.gif",
 ];
 
+let currentGif = null; // Variable to store the currently displayed GIF
+let timeoutId = null;   // Variable to store the timeout ID
+
 function showTapEffect(event) {
+  // Remove the current GIF if it exists
+  if (currentGif) {
+    document.body.removeChild(currentGif);
+    currentGif = null;
+  }
+  // Clear any pending timeout
+    clearTimeout(timeoutId);
+
   // Chọn ngẫu nhiên một GIF từ danh sách
   let randomIndex = Math.floor(Math.random() * gifList.length);
   let randomGif = gifList[randomIndex];
 
   //Correct path
-  randomGif =  `/timez/${randomGif}`;
+  randomGif = `/timez/${randomGif}`;
 
   let tapEffect = document.createElement("img");
   tapEffect.src = randomGif;
@@ -70,10 +81,16 @@ function showTapEffect(event) {
   tapEffect.style.transition = "opacity 0.5s ease-out";
 
   document.body.appendChild(tapEffect);
+  currentGif = tapEffect; // Store the current GIF
 
-  setTimeout(() => {
+  timeoutId = setTimeout(() => {
     tapEffect.style.opacity = "0";
-    setTimeout(() => document.body.removeChild(tapEffect), 500);
+    timeoutId = setTimeout(() => {
+      if (currentGif === tapEffect) {
+        document.body.removeChild(tapEffect);
+        currentGif = null;
+      }
+    }, 500);
   }, 500);
 }
 
