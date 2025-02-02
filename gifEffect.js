@@ -48,11 +48,18 @@ const gifList = [
     "nuko/nukoSexy.gif",
     "nuko/nukoSexy2.gif",
     "nuko/nukoSukiLoveYou.gif"
-    // Thêm các file GIF khác nếu biết tên, hoặc dùng phương thức tự động lấy danh sách file
 ];
+
+// Cờ kiểm tra trạng thái GIF
+let isGifVisible = false;
 
 // Hiệu ứng click với GIF ngẫu nhiên
 function showTapEffect(event) {
+    if (isGifVisible) return; // Nếu GIF đã hiển thị thì không làm gì
+
+    // Đặt cờ isGifVisible thành true để ngừng hiển thị nhiều GIF cùng lúc
+    isGifVisible = true;
+
     // Chọn ngẫu nhiên một GIF từ danh sách
     let randomGif = gifList[Math.floor(Math.random() * gifList.length)];
 
@@ -61,8 +68,8 @@ function showTapEffect(event) {
     tapEffect.style.position = 'absolute';
     tapEffect.style.width = '50px';
     tapEffect.style.height = '50px';
-    tapEffect.style.left = `${event.clientX - 25}px`;
-    tapEffect.style.top = `${event.clientY - 25}px`;
+    tapEffect.style.left = ${event.clientX - 25}px;
+    tapEffect.style.top = ${event.clientY - 25}px;
     tapEffect.style.pointerEvents = 'none';
     tapEffect.style.opacity = '1';
     tapEffect.style.transition = 'opacity 0.5s ease-out';
@@ -73,6 +80,11 @@ function showTapEffect(event) {
         tapEffect.style.opacity = '0';
         setTimeout(() => document.body.removeChild(tapEffect), 500);
     }, 500);
+
+    // Sau 2 giây, cho phép hiển thị GIF tiếp theo
+    setTimeout(() => {
+        isGifVisible = false;
+    }, 2000); // 2 giây
 }
 
 // Add event listener to document
