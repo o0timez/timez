@@ -60,12 +60,26 @@ avatar.addEventListener('click', (event) => {
 
     const state = player.getPlayerState();
     if (state === -1 || state === YT.PlayerState.ENDED || state === YT.PlayerState.CUED) {
-        playRandomMusic();
+        playRandomMusic(); // Phát nhạc mới nếu đang dừng hoặc hết bài
     } else if (state !== YT.PlayerState.PLAYING) {
-        player.playVideo();
+        player.playVideo(); // Tiếp tục phát nếu nhạc đang tạm dừng
     }
 
     // Hiện thanh volume khi nhấn vào avatar
+    volumeControl.style.opacity = '1';
+
+    // Ẩn lại sau 3s
+    setTimeout(() => {
+        volumeControl.style.opacity = '0';
+    }, 3000);
+
+    // Thêm hiệu ứng chạm vào
+    showTapEffect(event);
+});
+
+// Sự kiện khi double click vào avatar (đổi nhạc)
+avatar.addEventListener('dblclick', (event) => {
+    playRandomMusic(); // Đổi bài nhạc khi double click
     volumeControl.style.opacity = '1';
 
     // Ẩn lại sau 3s
@@ -105,3 +119,8 @@ function showTapEffect(event) {
         }, 500);
     }, 500);
 }
+
+// Thêm hiệu ứng chạm vào toàn trang (không chỉ avatar)
+document.body.addEventListener('click', (event) => {
+    showTapEffect(event);
+});
