@@ -2,7 +2,7 @@ window.onload = function () {
     let player; // YouTube Player
     let audioPlayer = new Audio(); // HTML5 Audio Player
     let useYouTube = true; // Mặc định ưu tiên YouTube
-
+    let isPlaying = false; // Thêm trạng thái để theo dõi trạng thái phát nhạc
     let avatar = document.getElementById('avatar');
     let volumeControl = document.getElementById('volume-control');
     let volumeSlider = document.getElementById('volume-slider');
@@ -30,7 +30,7 @@ window.onload = function () {
             width: '0',
             videoId: currentMusic.url, // Nhạc đầu tiên
             playerVars: {
-                'autoplay': 1, // Tự động phát
+                'autoplay': 0, // KHÔNG Tự động phát khi khởi tạo
                 'controls': 0,
                 'disablekb': 1,
                 'modestbranding': 1,
@@ -40,20 +40,21 @@ window.onload = function () {
                 'onReady': (event) => {
                     console.log("✅ YouTube Player Ready!");
                     event.target.setVolume(100);
-                    event.target.playVideo(); // Tự động phát khi sẵn sàng
                 },
                 'onStateChange': onPlayerStateChange
             }
         });
     }
-    // Định nghĩa API sau khi khai báo hàm onYouTubeIframeAPIReady
+
     window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
 
     function onPlayerStateChange(event) {
         if (event.data === YT.PlayerState.PLAYING) {
             avatar.classList.add('playing');
+            isPlaying = true;
         } else {
             avatar.classList.remove('playing');
+            isPlaying = false;
         }
 
         if (event.data === YT.PlayerState.ENDED) {
@@ -79,7 +80,11 @@ window.onload = function () {
 
         if (useYouTube && player && typeof player.loadVideoById === 'function') {
             player.loadVideoById(randomMusic.url);
-            setTimeout(() => player.playVideo(), 2000);
+            setTimeout(() => {
+                if (!isPlaying) {
+                    player.playVideo();
+                }
+            }, 2000); // Đợi 2s rồi mới chạy
         } else {
             console.warn("⚠ Không thể phát YouTube! Chuyển sang phát nhạc từ thư mục.");
             audioPlayer.src = randomMusic.file;
@@ -91,12 +96,12 @@ window.onload = function () {
 
     // Click vào avatar để phát nhạc (không tạm dừng)
     avatar.addEventListener('click', (event) => {
-        //First, we ensure the player is initialized and ready to use
-        if (useYouTube && player && typeof player.playVideo === 'function') {
-            //Play regardless of whether the current state is playing or not
-            player.playVideo();
-        } else if (audioPlayer.paused) {
-            audioPlayer.play();
+        if (!isPlaying) {
+            if (useYouTube && player && typeof player.getPlayerState === 'function') {
+                player.playVideo();
+            } else if (audioPlayer.paused) {
+                audioPlayer.play();
+            }
         }
 
         volumeControl.style.opacity = '1';
@@ -126,11 +131,13 @@ window.onload = function () {
         }
     });
 
-
     document.body.addEventListener('click', (event) => {
         showTapEffect(event);
     });
 
-    // Định nghĩa API
     window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
 };
+
+function showTapEffect(event) {
+    console.log("showTapEffect not defined in provided context")
+}
