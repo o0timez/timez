@@ -33,5 +33,8 @@ setTimeout(() => {
 
 }
 
-// Add event listener to document document.addEventListener('click', showTapEffect);
+// Add event listener to document
+
+
+ document.addEventListener('click', showTapEffect);
 
