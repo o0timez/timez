@@ -31,8 +31,9 @@ function onPlayerStateChange(event) {
         avatar.classList.remove('playing');
     }
 
+    // Lặp lại bài hát thay vì phát bài mới
     if (event.data === YT.PlayerState.ENDED) {
-        playRandomMusic();
+        player.playVideo();
     }
 }
 
@@ -50,8 +51,13 @@ function playRandomMusic() {
 }
 
 avatar.addEventListener('click', () => {
-    if (player.getPlayerState() !== YT.PlayerState.PLAYING) {
+    if (!player || typeof player.getPlayerState !== 'function') return;
+
+    const state = player.getPlayerState();
+    if (state === -1 || state === YT.PlayerState.ENDED || state === YT.PlayerState.CUED) {
         playRandomMusic();
+    } else if (state !== YT.PlayerState.PLAYING) {
+        player.playVideo();
     } else {
         document.getElementById('volume-control').classList.add('show-volume');
         setTimeout(() => {
