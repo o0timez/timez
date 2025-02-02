@@ -29,26 +29,26 @@ body {
     100% { opacity: 1; transform: translateY(0); }
 }
 
-/* Avatar */
+/* Avatar - Căn giữa */
 .avatar {
     cursor: pointer;
     display: block;
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    margin-bottom: 20px;
+    margin: 0 auto 20px;  /* Căn giữa */
     border: 5px solid #F37EB5;
     transition: all 0.3s ease-in-out;
     transform-origin: center center;
     position: relative;
 }
 
+/* Hiệu ứng avatar */
 .avatar:hover {
     transform: scale(1.1);
     transition: transform 0.2s ease-in-out;
 }
 
-/* Hiệu ứng phát nhạc */
 .avatar.playing {
     animation: spin 8s linear infinite;
 }
