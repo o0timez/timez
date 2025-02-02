@@ -68,17 +68,22 @@ function showTapEffect(event) {
     tapEffect.style.position = 'absolute';
     tapEffect.style.width = '50px';
     tapEffect.style.height = '50px';
-    tapEffect.style.left = ${event.clientX - 25}px;
-    tapEffect.style.top = ${event.clientY - 25}px;
+    tapEffect.style.left = `${event.clientX - 25}px`; // Changed
+    tapEffect.style.top = `${event.clientY - 25}px`; // Changed
     tapEffect.style.pointerEvents = 'none';
     tapEffect.style.opacity = '1';
     tapEffect.style.transition = 'opacity 0.5s ease-out';
+    tapEffect.style.zIndex = '1000'; // Added
 
     document.body.appendChild(tapEffect);
 
     setTimeout(() => {
         tapEffect.style.opacity = '0';
-        setTimeout(() => document.body.removeChild(tapEffect), 500);
+        setTimeout(() => {
+           if (tapEffect.parentNode) { // Check if the element is still in the DOM.
+              document.body.removeChild(tapEffect);
+            }
+        }, 500);
     }, 500);
 
     // Sau 2 giây, cho phép hiển thị GIF tiếp theo
@@ -89,3 +94,4 @@ function showTapEffect(event) {
 
 // Add event listener to document
 document.addEventListener('click', showTapEffect);
+console.log("Event attached");
