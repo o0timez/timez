@@ -85,7 +85,7 @@ document.getElementById('volume-slider').addEventListener('input', (e) => {
 // Hiệu ứng chạm vào (hiện hình ảnh nhỏ ở vị trí chạm)
 function showTapEffect(event) {
     let tapEffect = document.createElement('img');
-    tapEffect.src = 'images/tap-effect.gif'; // Đổi thành ảnh hoặc GIF mong muốn
+    tapEffect.src = 'images/YasCatExcited.gif'; // Đổi thành ảnh hoặc GIF mong muốn
     tapEffect.style.position = 'absolute';
     tapEffect.style.width = '50px';  // Kích thước ảnh hiệu ứng
     tapEffect.style.height = '50px';
