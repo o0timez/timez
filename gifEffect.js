@@ -61,8 +61,8 @@ function showTapEffect(event) {
     tapEffect.style.position = 'absolute';
     tapEffect.style.width = '50px';
     tapEffect.style.height = '50px';
-    tapEffect.style.left = ${event.clientX - 25}px;
-    tapEffect.style.top = ${event.clientY - 25}px;
+    tapEffect.style.left = `${event.clientX - 25}px`;
+    tapEffect.style.top = `${event.clientY - 25}px`;
     tapEffect.style.pointerEvents = 'none';
     tapEffect.style.opacity = '1';
     tapEffect.style.transition = 'opacity 0.5s ease-out';
@@ -74,3 +74,6 @@ function showTapEffect(event) {
         setTimeout(() => document.body.removeChild(tapEffect), 500);
     }, 500);
 }
+
+// Add event listener to document
+document.addEventListener('click', showTapEffect);
