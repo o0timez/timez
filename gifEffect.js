@@ -1,64 +1,69 @@
-// Danh sách tên file GIF trong thư mục
-const gifList = [
-  "nuko/nukoBigHeart.gif",
-  "nuko/nukoBlowHeart.gif",
-  "nuko/nukoBlowKiss1.gif",
-  "nuko/nukoBlowKiss2.gif",
-  "nuko/nukoBlowKiss3.gif",
-  "nuko/nukoBlowKiss4.gif",
-  "nuko/nukoBlowKiss5.gif",
-  "nuko/nukoBouquet.gif",
-  "nuko/nukoCuddle.gif",
-  "nuko/nukoCuteLove.gif",
-  "nuko/nukoDanceHeart.gif",
-  "nuko/nukoHeart1.gif",
-  "nuko/nukoHeart2.gif",
-  "nuko/nukoHeart3.gif",
-  "nuko/nukoHeart4.gif",
-  "nuko/nukoHeartBeat.gif",
-  "nuko/nukoHeartBlink.gif",
-  "nuko/nukoHeartExcited.gif",
-  "nuko/nukoHeartEyes.gif",
-  "nuko/nukoHeartHitHead.gif",
-  "nuko/nukoHeartInside.gif",
-  "nuko/nukoHeartInvasion.gif",
-  "nuko/nukoHeartsFlying.gif",
-  "nuko/nukoHeartsLaying.gif",
-  "nuko/nukoHeartThrow.gif",
-  "nuko/nukoHoldingHeart.gif",
-  "nuko/nukoHug.gif",
-  "nuko/nukoHugHeart.gif",
-  "nuko/nukoILikeYou.gif",
-  "nuko/nukoILoveYou.gif",
-  "nuko/nukoJumpHeart.gif",
-  "nuko/nukoKiss1.gif",
-  "nuko/nukoKissShy.gif",
-  "nuko/nukoLove1.gif",
-  "nuko/nukoLove2.gif",
-  "nuko/nukoLove3.gif",
-  "nuko/nukoLove4.gif",
-  "nuko/nukoLoveBalloon.gif",
-  "nuko/nukoLoveGift.gif",
-  "nuko/nukoLoveLetter1.gif",
-  "nuko/nukoLoveLetter2.gif",
-  "nuko/nukoPeekHeadHeart.gif",
-  "nuko/nukoPeekHeart.gif",
-  "nuko/nukoPeekShyHeart.gif",
-  "nuko/nukoRose.gif",
-  "nuko/nukoSexy.gif",
-  "nuko/nukoSexy2.gif",
-  "nuko/nukoSukiLoveYou.gif",
-];
+// Danh sách tên file GIF trong thư mục và thời gian (ms)
+const gifDurations = new Map([
+    ["nuko/nukoBigHeart.gif", 2200],
+    ["nuko/nukoBlowHeart.gif", 3300],
+    ["nuko/nukoBlowKiss1.gif", 3000],
+    ["nuko/nukoBlowKiss2.gif", 3000],
+    ["nuko/nukoBlowKiss3.gif", 3000],
+    ["nuko/nukoBlowKiss4.gif", 3000],
+    ["nuko/nukoBlowKiss5.gif", 3000],
+    ["nuko/nukoBouquet.gif", 3000],
+    ["nuko/nukoCuddle.gif", 3000],
+    ["nuko/nukoCuteLove.gif", 3000],
+    ["nuko/nukoDanceHeart.gif", 2500],
+    ["nuko/nukoHeart1.gif", 3000],
+    ["nuko/nukoHeart2.gif", 3000],
+    ["nuko/nukoHeart3.gif", 3000],
+    ["nuko/nukoHeart4.gif", 3000],
+    ["nuko/nukoHeartBeat.gif", 2000],
+    ["nuko/nukoHeartBlink.gif", 3000],
+    ["nuko/nukoHeartExcited.gif", 3000],
+    ["nuko/nukoHeartEyes.gif", 3000],
+    ["nuko/nukoHeartHitHead.gif", 3000],
+    ["nuko/nukoHeartInside.gif", 3000],
+    ["nuko/nukoHeartInvasion.gif", 3000],
+    ["nuko/nukoHeartsFlying.gif", 3000],
+    ["nuko/nukoHeartsLaying.gif", 3000],
+    ["nuko/nukoHeartThrow.gif", 3000],
+    ["nuko/nukoHoldingHeart.gif", 3000],
+    ["nuko/nukoHug.gif", 3000],
+    ["nuko/nukoHugHeart.gif", 3000],
+    ["nuko/nukoILikeYou.gif", 3000],
+    ["nuko/nukoILoveYou.gif", 3000],
+    ["nuko/nukoJumpHeart.gif", 3000],
+    ["nuko/nukoKiss1.gif", 3000],
+    ["nuko/nukoKissShy.gif", 3000],
+    ["nuko/nukoLove1.gif", 3000],
+    ["nuko/nukoLove2.gif", 3000],
+    ["nuko/nukoLove3.gif", 3000],
+    ["nuko/nukoLove4.gif", 3000],
+    ["nuko/nukoLoveBalloon.gif", 3000],
+    ["nuko/nukoLoveGift.gif", 3000],
+    ["nuko/nukoLoveLetter1.gif", 3000],
+    ["nuko/nukoLoveLetter2.gif", 3000],
+    ["nuko/nukoPeekHeadHeart.gif", 3000],
+    ["nuko/nukoPeekHeart.gif", 3000],
+    ["nuko/nukoPeekShyHeart.gif", 3000],
+    ["nuko/nukoRose.gif", 3000],
+    ["nuko/nukoSexy.gif", 3000],
+    ["nuko/nukoSexy2.gif", 3000],
+    ["nuko/nukoSukiLoveYou.gif", 3000],
+]);
 
-let currentGif = null; // Variable to store the currently displayed GIF
+const gifList = Array.from(gifDurations.keys());
+let currentGif = null;
+let currentTimeout = null;
 
 function showTapEffect(event) {
-  // Remove the current GIF if it exists
+  // Remove the current GIF and timeout if they exist
   if (currentGif) {
     document.body.removeChild(currentGif);
     currentGif = null;
   }
-
+    if(currentTimeout){
+        clearTimeout(currentTimeout);
+        currentTimeout = null;
+    }
   // Chọn ngẫu nhiên một GIF từ danh sách
   let randomIndex = Math.floor(Math.random() * gifList.length);
   let randomGif = gifList[randomIndex];
@@ -78,6 +83,18 @@ function showTapEffect(event) {
 
   document.body.appendChild(tapEffect);
   currentGif = tapEffect; // Store the current GIF
+
+  // Get the GIF duration and set a timeout to remove it
+  const duration = gifDurations.get(gifList[randomIndex]);
+    if(duration){
+        currentTimeout = setTimeout(() => {
+          if (currentGif === tapEffect) {
+            document.body.removeChild(tapEffect);
+            currentGif = null;
+          }
+        }, duration);
+    }
+
 }
 
 // Thêm event listener cho document
