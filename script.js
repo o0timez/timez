@@ -14,35 +14,37 @@ window.onload = function () {
 
     volumeControl.style.opacity = '0';
 
+    // Danh sách nhạc
+    const musicList = [
+        { title: "Love For You", url: "nQVaRFP-ppw", file: "music/loveli.mp3", image: "images/citi.jpg" },
+        { title: "PoPiPo", url: "TNf3GPizM58", file: "music/song2.mp3", image: "images/citi.jpg" },
+        { title: "Bài hát 3", url: "def456uvw", file: "music/song3.mp3", image: "images/citi.jpg" }
+    ];
+    let currentMusic = musicList[0]; // Bài hát hiện tại
+
+    // Khởi tạo YouTube Player
     function onYouTubeIframeAPIReady() {
         console.log("✅ YouTube API Loaded!");
-        try {
-            player = new YT.Player('youtube-player', {
-                height: '0',
-                width: '0',
-                videoId: 'nQVaRFP-ppw',
-                playerVars: {
-                    'autoplay': 0,
-                    'controls': 0,
-                    'disablekb': 1,
-                    'modestbranding': 1,
-                    'playsinline': 1
+        player = new YT.Player('youtube-player', {
+            height: '0',
+            width: '0',
+            videoId: currentMusic.url, // Nhạc đầu tiên
+            playerVars: {
+                'autoplay': 1, // Tự động phát
+                'controls': 0,
+                'disablekb': 1,
+                'modestbranding': 1,
+                'playsinline': 1
+            },
+            events: {
+                'onReady': (event) => {
+                    console.log("✅ YouTube Player Ready!");
+                    event.target.setVolume(100);
+                    event.target.playVideo(); // Tự động phát khi sẵn sàng
                 },
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
-                }
-            });
-        } catch (error) {
-            console.error("⛔ Lỗi khi tải YouTube API! Chuyển sang phát nhạc offline...");
-            useYouTube = false;
-            playRandomMusic();
-        }
-    }
-
-    function onPlayerReady(event) {
-        console.log("✅ YouTube Player Ready!");
-        event.target.setVolume(100);
+                'onStateChange': onPlayerStateChange
+            }
+        });
     }
 
     function onPlayerStateChange(event) {
@@ -57,33 +59,25 @@ window.onload = function () {
         }
     }
 
-    const musicList = [
-        { title: "Love For You", url: "nQVaRFP-ppw", file: "music/loveli.mp3", image: "images/citi.jpg" },
-        { title: "PoPiPo", url: "TNf3GPizM58", file: "music/song2.mp3", image: "images/citi.jpg" },
-        { title: "Bài hát 3", url: "def456uvw", file: "music/song3.mp3", image: "images/citi.jpg" }
-    ];
-
-    let currentMusic = musicList[0]; // Lưu trữ bài hát hiện tại
-
+    // Chọn nhạc ngẫu nhiên và phát
     function playRandomMusic() {
-        let availableMusic = musicList.filter(music => music.url || music.file); // Lọc những bài hát có nguồn hợp lệ
-        let randomMusic = availableMusic[Math.floor(Math.random() * availableMusic.length)];
-
-        if (!randomMusic) {
-            console.warn("⚠ Không tìm thấy nhạc khả dụng! Giữ nguyên nhạc cũ.");
+        let availableMusic = musicList.filter(music => music.url || music.file);
+        if (availableMusic.length === 0) {
+            console.warn("⚠ Không có bài hát khả dụng!");
             return;
         }
+
+        let randomMusic;
+        do {
+            randomMusic = availableMusic[Math.floor(Math.random() * availableMusic.length)];
+        } while (randomMusic === currentMusic);
 
         currentMusic = randomMusic;
         console.log(`🎵 Đang phát: ${randomMusic.title}`);
 
         if (useYouTube && player && typeof player.loadVideoById === 'function') {
             player.loadVideoById(randomMusic.url);
-            setTimeout(() => {
-                if (player && typeof player.playVideo === 'function') {
-                    player.playVideo();
-                }
-            }, 3000);
+            setTimeout(() => player.playVideo(), 2000);
         } else {
             console.warn("⚠ Không thể phát YouTube! Chuyển sang phát nhạc từ thư mục.");
             audioPlayer.src = randomMusic.file;
@@ -93,24 +87,22 @@ window.onload = function () {
         avatar.src = randomMusic.image && randomMusic.image.trim() !== "" ? randomMusic.image : "images/citi.jpg";
     }
 
+    // Click vào avatar để phát nhạc (không tạm dừng)
     avatar.addEventListener('click', (event) => {
-        // Không còn chức năng tạm dừng khi chạm vào avatar
         if (useYouTube && player && typeof player.getPlayerState === 'function') {
-            const state = player.getPlayerState();
-            if (state !== YT.PlayerState.PLAYING) {
+            if (player.getPlayerState() !== YT.PlayerState.PLAYING) {
                 player.playVideo();
             }
-        } else {
-            if (audioPlayer.paused) {
-                audioPlayer.play();
-            }
+        } else if (audioPlayer.paused) {
+            audioPlayer.play();
         }
 
         volumeControl.style.opacity = '1';
-        setTimeout(() => { volumeControl.style.opacity = '0'; }, 3000);
+        setTimeout(() => volumeControl.style.opacity = '0', 3000);
         showTapEffect(event);
     });
 
+    // Double tap để đổi nhạc
     avatar.addEventListener('dblclick', (event) => {
         let previousMusic = currentMusic;
         playRandomMusic();
@@ -119,10 +111,11 @@ window.onload = function () {
         }
 
         volumeControl.style.opacity = '1';
-        setTimeout(() => { volumeControl.style.opacity = '0'; }, 3000);
+        setTimeout(() => volumeControl.style.opacity = '0', 3000);
         showTapEffect(event);
     });
 
+    // Điều chỉnh âm lượng
     volumeSlider.addEventListener('input', (e) => {
         if (useYouTube && player) {
             player.setVolume(e.target.value);
@@ -131,6 +124,7 @@ window.onload = function () {
         }
     });
 
+    // Hiệu ứng click
     function showTapEffect(event) {
         let tapEffect = document.createElement('img');
         tapEffect.src = 'images/YasCatExcited.gif';
@@ -147,9 +141,7 @@ window.onload = function () {
 
         setTimeout(() => {
             tapEffect.style.opacity = '0';
-            setTimeout(() => {
-                document.body.removeChild(tapEffect);
-            }, 500);
+            setTimeout(() => document.body.removeChild(tapEffect), 500);
         }, 500);
     }
 
@@ -157,5 +149,6 @@ window.onload = function () {
         showTapEffect(event);
     });
 
+    // Định nghĩa API
     window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
 };
