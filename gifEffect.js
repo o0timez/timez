@@ -54,37 +54,41 @@ const gifList = Array.from(gifDurations.keys());
 const activeGifs = new Set(); // Store currently displayed GIFs
 
 function showTapEffect(event) {
-  // Chọn ngẫu nhiên một GIF từ danh sách
-  let randomIndex = Math.floor(Math.random() * gifList.length);
-  let randomGif = gifList[randomIndex];
+    // Chọn ngẫu nhiên một GIF từ danh sách
+    let randomIndex = Math.floor(Math.random() * gifList.length);
+    let randomGif = gifList[randomIndex];
 
-  //Correct path
-  randomGif = `/timez/${randomGif}`;
+    //Correct path
+    randomGif = `/timez/${randomGif}`;
 
-  let tapEffect = document.createElement("img");
-  tapEffect.src = randomGif;
-  tapEffect.style.position = "absolute";
-  tapEffect.style.width = "50px";
-  tapEffect.style.height = "50px";
-  tapEffect.style.left = `${event.clientX - 25}px`;
-  tapEffect.style.top = `${event.clientY - 25}px`;
-  tapEffect.style.pointerEvents = "none";
-  tapEffect.style.opacity = "1";
+    let tapEffect = document.createElement("img");
+    tapEffect.src = randomGif;
+    tapEffect.style.position = "absolute";
+    tapEffect.style.width = "50px";
+    tapEffect.style.height = "50px";
 
-  document.body.appendChild(tapEffect);
-  activeGifs.add(tapEffect) // Add new gif to the set
+    // Random offset for position to avoid overlap
+    const offsetX = Math.random() * 20 - 10; // -10 to +10
+    const offsetY = Math.random() * 20 - 10; // -10 to +10
+    tapEffect.style.left = `${event.clientX - 25 + offsetX}px`;
+    tapEffect.style.top = `${event.clientY - 25 + offsetY}px`;
 
-  // Get the GIF duration and set a timeout to remove it
-  const duration = gifDurations.get(gifList[randomIndex]);
-    if(duration){
+    tapEffect.style.pointerEvents = "none";
+    tapEffect.style.opacity = "1";
+
+    document.body.appendChild(tapEffect);
+    activeGifs.add(tapEffect) // Add new gif to the set
+
+    // Get the GIF duration and set a timeout to remove it
+    const duration = gifDurations.get(gifList[randomIndex]);
+    if (duration) {
         setTimeout(() => {
             if (activeGifs.has(tapEffect)) {
-              document.body.removeChild(tapEffect);
-              activeGifs.delete(tapEffect);
+                document.body.removeChild(tapEffect);
+                activeGifs.delete(tapEffect);
             }
-          }, duration);
+        }, duration);
     }
-
 }
 
 // Thêm event listener cho document
