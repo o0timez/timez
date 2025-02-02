@@ -53,7 +53,18 @@ const gifDurations = new Map([
 const gifList = Array.from(gifDurations.keys());
 const activeGifs = new Set(); // Store currently displayed GIFs
 
+let lastGifTime = 0; // Initialize the last GIF time
+const cooldown = 500; // Cooldown period in milliseconds (e.g., 500ms = 0.5 seconds)
+
 function showTapEffect(event) {
+    const currentTime = Date.now();
+    if (currentTime - lastGifTime < cooldown) {
+        // If the cooldown period has not passed, exit the function
+        return;
+    }
+
+    lastGifTime = currentTime; // Update the last GIF time
+
     // Chọn ngẫu nhiên một GIF từ danh sách
     let randomIndex = Math.floor(Math.random() * gifList.length);
     let randomGif = gifList[randomIndex];
