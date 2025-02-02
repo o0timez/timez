@@ -18,7 +18,7 @@ window.onload = function () {
     const musicList = [
         { title: "Love For You", url: "nQVaRFP-ppw", file: "music/loveli.mp3", image: "images/citi.jpg" },
         { title: "PoPiPo", url: "TNf3GPizM58", file: "music/PoPiPo.mp3", image: "images/citi.jpg" },
-        { title: "Caramella Girls", url: "6-8E4Nirh9s", file: "music/Caramella Girls", image: "images/citi.jpg" }
+        { title: "Caramella Girls", url: "6-8E4Nirh9s", file: "music/Caramella Girls.mp3", image: "images/citi.jpg" }
     ];
     let currentMusic = musicList[0]; // Bài hát hiện tại
 
