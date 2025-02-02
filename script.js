@@ -1,5 +1,8 @@
 window.onload = function () {
-    let player;
+    let player; // YouTube Player
+    let audioPlayer = new Audio(); // HTML5 Audio Player
+    let useYouTube = true; // Mặc định ưu tiên YouTube
+
     let avatar = document.getElementById('avatar');
     let volumeControl = document.getElementById('volume-control');
     let volumeSlider = document.getElementById('volume-slider');
@@ -12,27 +15,33 @@ window.onload = function () {
     volumeControl.style.opacity = '0';
 
     function onYouTubeIframeAPIReady() {
-        console.log("✅ YouTube API Loaded!"); // Debug
-        player = new YT.Player('youtube-player', {
-            height: '0',
-            width: '0',
-            videoId: 'nQVaRFP-ppw',
-            playerVars: {
-                'autoplay': 0,
-                'controls': 0,
-                'disablekb': 1,
-                'modestbranding': 1,
-                'playsinline': 1
-            },
-            events: {
-                'onReady': onPlayerReady,
-                'onStateChange': onPlayerStateChange
-            }
-        });
+        console.log("✅ YouTube API Loaded!");
+        try {
+            player = new YT.Player('youtube-player', {
+                height: '0',
+                width: '0',
+                videoId: 'nQVaRFP-ppw',
+                playerVars: {
+                    'autoplay': 0,
+                    'controls': 0,
+                    'disablekb': 1,
+                    'modestbranding': 1,
+                    'playsinline': 1
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        } catch (error) {
+            console.error("⛔ Lỗi khi tải YouTube API! Chuyển sang phát nhạc offline...");
+            useYouTube = false;
+            playRandomMusic(); // Chuyển sang Audio Player
+        }
     }
 
     function onPlayerReady(event) {
-        console.log("✅ YouTube Player Ready!"); // Debug
+        console.log("✅ YouTube Player Ready!");
         event.target.setVolume(100);
     }
 
@@ -44,42 +53,50 @@ window.onload = function () {
         }
 
         if (event.data === YT.PlayerState.ENDED) {
-            player.playVideo();
+            playRandomMusic();
         }
     }
 
     const musicList = [
-        { title: "Love For You", url: "nQVaRFP-ppw", image: "images/citi.jpg" },
-        { title: "PoPiPo", url: "TNf3GPizM58", image: "images/citi.jpg" },
-        { title: "Bài hát 3", url: "def456uvw", image: "" }
+        { title: "Love For You", url: "nQVaRFP-ppw", file: "music/song1.mp3", image: "images/citi.jpg" },
+        { title: "PoPiPo", url: "TNf3GPizM58", file: "music/song2.mp3", image: "images/citi.jpg" },
+        { title: "Bài hát 3", url: "def456uvw", file: "music/song3.mp3", image: "images/citi.jpg" }
     ];
 
     function playRandomMusic() {
         const randomMusic = musicList[Math.floor(Math.random() * musicList.length)];
-        if (player && typeof player.loadVideoById === 'function') {
+        console.log(`🎵 Đang phát: ${randomMusic.title}`);
+
+        if (useYouTube && player && typeof player.loadVideoById === 'function') {
             player.loadVideoById(randomMusic.url);
             setTimeout(() => { 
                 if (player && typeof player.playVideo === 'function') {
                     player.playVideo();
                 }
-            }, 3000); // Thêm delay 3s trước khi phát
-            avatar.src = randomMusic.image && randomMusic.image.trim() !== "" ? randomMusic.image : "images/citi.jpg";
+            }, 3000);
         } else {
-            console.error('❌ Player chưa khởi tạo hoặc chưa sẵn sàng!');
+            console.warn("⚠ Không thể phát YouTube! Chuyển sang phát nhạc từ thư mục.");
+            audioPlayer.src = randomMusic.file;
+            audioPlayer.play().catch(err => console.error("⛔ Lỗi khi phát nhạc offline:", err));
         }
+
+        avatar.src = randomMusic.image && randomMusic.image.trim() !== "" ? randomMusic.image : "images/citi.jpg";
     }
 
     avatar.addEventListener('click', (event) => {
-        if (!player || typeof player.getPlayerState !== 'function') {
-            console.error('⛔ Player chưa sẵn sàng! Thử lại sau.');
-            return;
-        }
-
-        const state = player.getPlayerState();
-        if (state === YT.PlayerState.PAUSED || state === YT.PlayerState.ENDED || state === YT.PlayerState.CUED) {
-            player.playVideo();
+        if (useYouTube && player && typeof player.getPlayerState === 'function') {
+            const state = player.getPlayerState();
+            if (state === YT.PlayerState.PAUSED || state === YT.PlayerState.ENDED || state === YT.PlayerState.CUED) {
+                player.playVideo();
+            } else {
+                player.pauseVideo();
+            }
         } else {
-            player.pauseVideo();
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+            } else {
+                audioPlayer.pause();
+            }
         }
 
         volumeControl.style.opacity = '1';
@@ -95,8 +112,10 @@ window.onload = function () {
     });
 
     volumeSlider.addEventListener('input', (e) => {
-        if (player) {
+        if (useYouTube && player) {
             player.setVolume(e.target.value);
+        } else {
+            audioPlayer.volume = e.target.value / 100;
         }
     });
 
@@ -126,6 +145,5 @@ window.onload = function () {
         showTapEffect(event);
     });
 
-    // Đặt API vào global scope để YouTube gọi được
     window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
 };
