@@ -6,16 +6,22 @@
     <title>My Link</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <script src="https://www.youtube.com/iframe_api"></script> <!-- Chỉ giữ 1 lần -->
+    <script src="https://www.youtube.com/iframe_api"></script>
 </head>
 <body>
 
     <div class="container">
-        <img id="avatar" src="images/citi.jpg" alt="Avatar TimeZ" class="avatar">
-
-        <div id="volume-control">
-            <input type="range" id="volume-slider" min="0" max="100" value="100">
+        
+        <!-- Music Player Elements -->
+        <div id="music-player">
+            <img id="avatar" src="images/citi.jpg" alt="Avatar TimeZ" class="avatar">
+            <button id="play-button">Play</button>
+            <div id="volume-control">
+                <input type="range" id="volume-slider" min="0" max="100" value="100">
+            </div>
         </div>
+        <div id="youtube-player"></div>
+        <!-- End Music Player Elements -->
 
         <h1>
             <img src="images/nukoILoveYou.gif" class="bio-icon"> 
@@ -40,9 +46,7 @@
         </div>
     </div>
 
-    <div id="music-container">
-        <div id="youtube-player"></div>
-    </div>
+    <!-- <div id="music-container"></div> you can remove it -->
 
     <!-- Thêm tệp script.js của anh -->
     <script src="script.js" defer></script>
