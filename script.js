@@ -125,38 +125,7 @@ window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
         }
     });
 
-    // Hiệu ứng click
-    // Danh sách GIF trong thư mục nuko
-const gifList = [
-    "nuko/nuko1.gif",
-    "nuko/nuko2.gif",
-    "nuko/nuko3.gif",
-    "nuko/nuko4.gif",
-    "nuko/nuko5.gif"
-];
-
-// Hiệu ứng click với GIF ngẫu nhiên
-function showTapEffect(event) {
-    let randomGif = gifList[Math.floor(Math.random() * gifList.length)]; // Chọn GIF ngẫu nhiên
-    let tapEffect = document.createElement('img');
-    tapEffect.src = randomGif;
-    tapEffect.style.position = 'absolute';
-    tapEffect.style.width = '40px';
-    tapEffect.style.height = '40px';
-    tapEffect.style.left = `${event.clientX - 25}px`;
-    tapEffect.style.top = `${event.clientY - 25}px`;
-    tapEffect.style.pointerEvents = 'none';
-    tapEffect.style.opacity = '1';
-    tapEffect.style.transition = 'opacity 0.5s ease-out';
-
-    document.body.appendChild(tapEffect);
-
-    setTimeout(() => {
-        tapEffect.style.opacity = '0';
-        setTimeout(() => document.body.removeChild(tapEffect), 500);
-    }, 500);
-}
-
+  
     document.body.addEventListener('click', (event) => {
         showTapEffect(event);
     });
