@@ -49,9 +49,13 @@ const musicList = [
 
 function playRandomMusic() {
     const randomMusic = musicList[Math.floor(Math.random() * musicList.length)];
-    player.loadVideoById(randomMusic.url);
-    player.playVideo();
-    avatar.src = randomMusic.image || "images/citi.jpg";
+    if (player && typeof player.loadVideoById === 'function') {
+        player.loadVideoById(randomMusic.url);
+        player.playVideo();
+        avatar.src = randomMusic.image || "images/citi.jpg";
+    } else {
+        console.error('Player is not initialized properly');
+    }
 }
 
 // Sự kiện khi nhấn vào avatar
