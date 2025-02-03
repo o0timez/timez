@@ -7,6 +7,7 @@ const musicUrls = [
 
 let currentTrack = 0;  // Track hiện tại trong danh sách
 let isVideoVisible = false; //Track the video visibility
+let soundcloudWidget; // Declare a variable to hold the SoundCloud widget instance
 
 function onYouTubeIframeAPIReady() {
     musicPlayer = new YT.Player('player', {
@@ -34,11 +35,11 @@ function extractYouTubeID(url) {
 }
 // Chức năng tạo SoundCloud Player
 function createSoundCloudPlayer(url) {
-    const widget = SC.Widget(url);
-    widget.bind(SC.Widget.Events.READY, function() {
-        widget.play();
+    soundcloudWidget = SC.Widget(url); // Store the widget instance
+    soundcloudWidget.bind(SC.Widget.Events.READY, function() {
+        soundcloudWidget.play();
     });
-    return widget;
+    return soundcloudWidget;
 }
 
 // Điều khiển trạng thái của player (lặp lại nhạc)
@@ -53,6 +54,9 @@ document.getElementById('avatar').addEventListener('click', function() {
     if (musicPlayer && musicPlayer.getPlayerState() !== YT.PlayerState.PLAYING) {
         musicPlayer.playVideo();
     }
+    if (soundcloudWidget) {
+        soundcloudWidget.play(); // Play the SoundCloud track if present
+    }
 });
 
 // Đổi nhạc khi double click
@@ -66,19 +70,29 @@ function playNextTrack() {
     const url = musicUrls[currentTrack];
 
     if (url.includes('youtube.com')) {
+        if(musicPlayer){
         musicPlayer.loadVideoById(extractYouTubeID(url));
+        }else{
+            onYouTubeIframeAPIReady();
+        }
+        if (soundcloudWidget) {
+            soundcloudWidget.pause(); // Pause SoundCloud if it's playing
+        }
     } else if (url.includes('soundcloud.com')) {
+        if (musicPlayer) {
+            musicPlayer.pauseVideo(); // Pause YouTube if it's playing
+        }
         createSoundCloudPlayer(url);
     }
     console.log("play next track")
 }
-
-if (musicUrls[0].includes('youtube.com')) {
-    onYouTubeIframeAPIReady();
-} else if (musicUrls[0].includes('soundcloud.com')) {
-    createSoundCloudPlayer(musicUrls[0]);
+function initMusicPlayer() {
+    if (musicUrls[0].includes('youtube.com')) {
+        onYouTubeIframeAPIReady();
+    } else if (musicUrls[0].includes('soundcloud.com')) {
+        createSoundCloudPlayer(musicUrls[0]);
+    }
 }
-
 // Chạy khi trang web đã tải xong
 window.onload = initMusicPlayer;
 document.getElementById('toggle-video-gif').addEventListener('click', function() {
@@ -86,7 +100,19 @@ document.getElementById('toggle-video-gif').addEventListener('click', function()
     isVideoVisible = !isVideoVisible;
     if (isVideoVisible) {
       playerContainer.style.display = 'flex'; //Make the player visible
+      if (musicPlayer && musicPlayer.getPlayerState() !== YT.PlayerState.PLAYING && musicUrls[currentTrack].includes('youtube.com')) {
+        musicPlayer.playVideo(); //resume the video
+      }
+      if (soundcloudWidget) {
+        soundcloudWidget.play(); //resume soundcloud
+      }
     } else {
       playerContainer.style.display = 'none'; // Hide the player
+      if (musicPlayer) {
+        musicPlayer.pauseVideo();
+      }
+      if (soundcloudWidget) {
+        soundcloudWidget.pause();
+      }
     }
 });
