@@ -301,6 +301,7 @@ input[type="range"]:focus::-webkit-slider-thumb {
 }
 
 /* gif mở video */
+
 .gif-toggle {
         transition: transform 0.3s ease; /* Smooth transformation for hover */
         width: 20px; /* Adjust the width of the GIF */
@@ -311,9 +312,15 @@ input[type="range"]:focus::-webkit-slider-thumb {
         transform: scale(1.1); /* Slightly enlarge the image on hover */
     }
 /* Style for toggle video GIF */
-#toggle-video-gif {
-    position: fixed; /* Fixed position relative to the viewport */
-    top: 20px; /* Adjust the top position as needed */
-    right: 20px; /* Adjust the right position as needed */
-    z-index: 100; /* Ensure it's on top of other elements */
+.container {
+  position: relative; /* This is important for the absolute positioning of the image */
 }
+
+#toggle-video-gif {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  margin-top: 0px;
+  margin-right: 10px;
+}
+
