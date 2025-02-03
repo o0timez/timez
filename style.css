@@ -98,15 +98,38 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50px;  /* Adjust as needed */
-    height: 50px; /* Adjust as needed */
-    font-size: 1.5em; /* Icon size */
+    width: 40px;  /* Adjust as needed */
+    height: 40px; /* Adjust as needed */
+    font-size: 1.2em; /* Icon size */
     background-color: #F37EB5;
     color: white;
     text-decoration: none;
     border-radius: 50%; /* Make it circular */
     font-weight: 500;
     transition: background-color 0.3s, transform 0.2s ease-in-out;
+    position: relative; /* Required for absolute positioning of the tooltip */
+}
+
+/* Tooltip Styling */
+.links a::before {
+    content: attr(data-tooltip); /* Gets the tooltip text from the data-tooltip attribute */
+    position: absolute;
+    bottom: calc(100% + 10px); /* Position above the icon */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: nowrap; /* Prevent text from wrapping */
+    opacity: 0; /* Hide by default */
+    pointer-events: none; /* Prevent the tooltip from interfering with mouse events */
+    transition: opacity 0.2s ease-in-out;
+    z-index: 10; /* Ensure the tooltip is above other content */
+}
+
+.links a:hover::before {
+    opacity: 1; /* Show on hover */
 }
 
 .links a:hover {
