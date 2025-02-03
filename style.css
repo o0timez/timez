@@ -304,8 +304,8 @@ input[type="range"]:focus::-webkit-slider-thumb {
 .gif-toggle {
         border-radius: 50%;
         transition: transform 0.3s ease; /* Smooth transformation for hover */
-        width: 100px; /* Adjust the width of the GIF */
-        height: 100px; /* Adjust the height of the GIF */
+        width: 20px; /* Adjust the width of the GIF */
+        height: 20px; /* Adjust the height of the GIF */
     }
 
     .gif-toggle:hover {
