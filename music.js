@@ -1,10 +1,12 @@
 let musicPlayer; // Declare musicPlayer outside the functions so it's globally accessible
 const musicUrls = [
+    // Thêm các URL vào danh sách
+    // Ví dụ URL YouTube
     'https://youtu.be/jQLyNVbSaW8?si=GlldOyW6kJtNTjPB',
     'https://youtu.be/gft21nuD8XQ?si=J6cCkTv6fWtWbMr3',
-    // Ví dụ URL YouTube
-    'https://soundcloud.com/user-123456789/song',  // Ví dụ URL SoundCloud
-    // Thêm các URL vào danh sách
+    // Ví dụ URL SoundCloud
+    'https://soundcloud.com/user-123456789/song',
+   
 ];
 
 let currentTrack = 0;  // Track hiện tại trong danh sách
