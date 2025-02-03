@@ -74,6 +74,9 @@ function playNextTrack() {
 }
 // Khởi tạo player
 function initMusicPlayer() {
+    const playerContainer = document.getElementById('player-container');
+    playerContainer.style.display = 'none'; // Ẩn video khi trang vừa khởi động
+
     if (musicUrls[0].includes('youtube.com')) {
         onYouTubeIframeAPIReady();
     } else if (musicUrls[0].includes('soundcloud.com')) {
