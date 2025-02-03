@@ -6,6 +6,7 @@ const musicUrls = [
 ];
 
 let currentTrack = 0;  // Track hiện tại trong danh sách
+let isVideoVisible = false; //Track the video visibility
 
 function onYouTubeIframeAPIReady() {
     musicPlayer = new YT.Player('player', {
@@ -82,3 +83,12 @@ function initMusicPlayer() {
 
 // Chạy khi trang web đã tải xong
 window.onload = initMusicPlayer;
+document.getElementById('toggle-video-gif').addEventListener('click', function() {
+    const playerContainer = document.getElementById('player-container');
+    isVideoVisible = !isVideoVisible;
+    if (isVideoVisible) {
+      playerContainer.style.display = 'flex'; //Make the player visible
+    } else {
+      playerContainer.style.display = 'none'; // Hide the player
+    }
+});
