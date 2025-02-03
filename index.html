@@ -8,61 +8,59 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> <!-- Thêm thư viện hỗ trợ Markdown -->
     <script src="https://www.youtube.com/iframe_api"></script>
-<script src="https://w.soundcloud.com/player/api.js"></script>
+    <script src="https://w.soundcloud.com/player/api.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> <!-- Thêm thư viện hỗ trợ Markdown -->
 </head>
 <body>
+<div id="youtube-player"></div>
 
-    <div class="container">
+<div class="container">
 
-        <img id="avatar" src="images/citi.jpg" alt="Avatar TimeZ" class="avatar">
-        <div id="avatar">
-  
+    <img id="avatar" src="images/citi.jpg" alt="Avatar TimeZ" class="avatar">
+
+    <h1>
+        <img src="images/nukoILoveYou.gif" class="bio-icon">
+        Love You
+        <img src="images/nukoILoveYou.gif" class="bio-icon">
+    </h1>
+    <p>
+        <img src="images/CatHeart.gif" class="bio-icon">
+        Love Is All
+        <img src="images/CatHeart.gif" class="bio-icon">
+    </p>
+    <p>speak: 🇻🇳🇨🇳🇱🇦🇹🇭🇺🇲</p>
+
+    <div class="links">
+        <a href="https://fb.com/o0TimeZ" target="_blank" title="Facebook" data-tooltip="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://instagram.com/o0timez" target="_blank" title="Instagram" data-tooltip="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://m.me/o0TimeZ" target="_blank" title="Messenger" data-tooltip="Messenger"><i class="fab fa-facebook-messenger"></i></a>
+        <a href="https://tiktok.com/@o0timez" target="_blank" title="TikTok" data-tooltip="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="https://v.douyin.com/if3xsCLr" target="_blank" title="Douyin" data-tooltip="Douyin"><i class="fab fa-tiktok"></i></a>
+        <a href="https://youtube.com/@o0timez" target="_blank" title="YouTube" data-tooltip="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://discordapp.com/users/634634219058102291" target="_blank" title="Discord" data-tooltip="Discord"><i class="fab fa-discord"></i></a>
+        <a href="https://www.threads.net/@o0timez" target="_blank" title="Threads" data-tooltip="Threads"><i class="fab fa-threads"></i></a>
+    </div>
+
+    <!-- Ảnh GIF About Me -->
+    <div id="about-me-icon">
+        <img src="nuko/nukoPleading.gif" alt="About Me" id="about-me-gif">
+    </div>
 </div>
 
-        <h1>
-            <img src="images/nukoILoveYou.gif" class="bio-icon"> 
-            Love You
-            <img src="images/nukoILoveYou.gif" class="bio-icon"> 
-        </h1>
-        <p>
-            <img src="images/CatHeart.gif" class="bio-icon"> 
-            Love Is All
-            <img src="images/CatHeart.gif" class="bio-icon">
-        </p>
-        <p>speak: 🇻🇳🇨🇳🇱🇦🇹🇭🇺🇲</p>
-
-        <div class="links">
-            <a href="https://fb.com/o0TimeZ" target="_blank" title="Facebook" data-tooltip="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://instagram.com/o0timez" target="_blank" title="Instagram" data-tooltip="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://m.me/o0TimeZ" target="_blank" title="Messenger" data-tooltip="Messenger"><i class="fab fa-facebook-messenger"></i></a>
-            <a href="https://tiktok.com/@o0timez" target="_blank" title="TikTok" data-tooltip="TikTok"><i class="fab fa-tiktok"></i></a>
-            <a href="https://v.douyin.com/if3xsCLr" target="_blank" title="Douyin" data-tooltip="Douyin"><i class="fab fa-tiktok"></i></a>
-            <a href="https://youtube.com/@o0timez" target="_blank" title="YouTube" data-tooltip="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="https://discordapp.com/users/634634219058102291" target="_blank" title="Discord" data-tooltip="Discord"><i class="fab fa-discord"></i></a>
-            <a href="https://www.threads.net/@o0timez" target="_blank" title="Threads" data-tooltip="Threads"><i class="fab fa-threads"></i></a>
-        </div>
-
-        <!-- Ảnh GIF About Me -->
-        <div id="about-me-icon">
-            <img src="nuko/nukoPleading.gif" alt="About Me" id="about-me-gif">
+<!-- Hộp thoại About Me -->
+<div id="about-me-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="about-me-content">
+            <!-- Nội dung aboutme.md sẽ được load vào đây -->
         </div>
     </div>
+</div>
 
-    <!-- Hộp thoại About Me -->
-    <div id="about-me-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div id="about-me-content">
-                <!-- Nội dung aboutme.md sẽ được load vào đây -->
-            </div>
-        </div>
-    </div>
-
-    <script src="music.js" defer></script>
-    <script src="aboutMe.js" defer></script>
-    <script src="gifEffect.js" defer></script>
-
+<script src="script.js" defer></script>
+<script src="music.js" defer></script>
+<script src="aboutMe.js" defer></script>
+<script src="gifEffect.js" defer></script>
 </body>
 </html>
