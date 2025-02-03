@@ -276,3 +276,27 @@ input[type="range"]:focus::-webkit-slider-thumb {
   display: flex;
   align-items: center;
 }
+
+/*make the player in center*/
+#player-container {
+    display: none;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    position: fixed; /* Cover the whole viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10; /* Ensure it's on top of other elements */
+}
+#player{
+    width: 640px;
+    height: 360px;
+}
+
+@media (max-width: 768px) {
+    #player{
+        width: 100%;
+        height: auto;
+    }
+}
