@@ -84,25 +84,37 @@ h1 {
     color: #F2688D;
 }
 
-/* Các nút link */
+/* Các nút link - Modified */
 .links {
     margin-top: 20px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 12px; /* Increased gap for better spacing */
 }
 
+/* Style for Font Awesome or similar icons */
 .links a {
-    display: inline-block;
-    padding: 8px 16px;
-    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;  /* Adjust as needed */
+    height: 40px; /* Adjust as needed */
+    font-size: 1.2em; /* Icon size */
     background-color: #F37EB5;
     color: white;
     text-decoration: none;
-    border-radius: 20px;
+    border-radius: 50%; /* Make it circular */
     font-weight: 500;
     transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+/* Style for image icons */
+.links a img {
+    width: 100%; /* Adjust as needed */
+    height: 100%; /* Adjust as needed */
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .links a:hover {
