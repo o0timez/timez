@@ -1,6 +1,6 @@
 let musicPlayer; // Declare musicPlayer outside the functions so it's globally accessible
 const musicUrls = [
-    'https://www.youtube.com/watch?v=dQw4w9WgXcQ',  // Ví dụ URL YouTube
+    'https://youtu.be/jQLyNVbSaW8?si=GlldOyW6kJtNTjPB',  // Ví dụ URL YouTube
     'https://soundcloud.com/user-123456789/song',  // Ví dụ URL SoundCloud
     // Thêm các URL vào danh sách
 ];
