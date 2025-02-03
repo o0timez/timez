@@ -12,7 +12,8 @@
 </head>
 <body>
 <div class="container">
-
+    <!-- Music Player Toggle GIF -->
+    <img id="toggle-video-gif" class="gif-toggle" src="nuko/nukoHappyRainbow2.gif" alt="Toggle Video">
     <img id="avatar" src="images/citi.jpg" alt="Avatar TimeZ" class="avatar">
 
     <h1>
@@ -42,8 +43,11 @@
     <div id="about-me-icon">
         <img src="nuko/nukoPleading.gif" alt="About Me" id="about-me-gif">
     </div>
-     <div id="player"></div>
 
+    <!-- Music Player Container -->
+    <div id="player-container">
+        <div id="player"></div>
+    </div>
 </div>
 
 <!-- Hộp thoại About Me -->
@@ -72,16 +76,7 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-            
-        </div>
-    </div>
-</div>
-
+<script src="https://w.soundcloud.com/player/api.js"></script>
 <script src="script.js" defer></script>
 <script src="music.js" defer></script>
 <script src="aboutMe.js" defer></script>
