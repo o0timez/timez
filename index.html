@@ -1,3 +1,4 @@
+`
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,10 +47,21 @@
             <a href="https://discordapp.com/users/634634219058102291" target="_blank" title="Discord" data-tooltip="Discord"><i class="fab fa-discord"></i></a>
             <a href="https://www.threads.net/@o0timez" target="_blank" title="Threads" data-tooltip="Threads"><i class="fab fa-threads"></i></a>
         </div>
+        <div id="about-me-icon">
+            <img src="images/aboutMe.gif" alt="About Me" id="about-me-gif">
+        </div>
+    </div>
+    <div id="about-me-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="about-me-content">
+                <!-- Content from aboutme.txt will be loaded here -->
+            </div>
+        </div>
     </div>
 
     <script src="script.js" defer></script>
-
+    <script src="aboutMe.js" defer></script>
     <script src="gifEffect.js" defer></script>
 
 </body>
