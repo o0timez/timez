@@ -1,3 +1,4 @@
+`
 /* Màu nền và font chữ */
 body {
     background-color: #F3D5DD;
@@ -117,8 +118,8 @@ h1 {
     bottom: calc(100% + 10px); /* Position above the icon */
     left: 50%;
     transform: translateX(-50%);
-    background-color: #333;
-    color: #fff;
+    background-color: #F3D5DD; /* Changed to match background pink */
+    color: black; /* changed to black */
     padding: 5px 10px;
     border-radius: 4px;
     white-space: nowrap; /* Prevent text from wrapping */
