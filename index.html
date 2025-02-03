@@ -1,4 +1,3 @@
-`
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,11 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> <!-- Thêm thư viện hỗ trợ Markdown -->
 </head>
 <body>
 
     <div class="container">
-        
+
         <!-- Music Player Elements -->
         <div id="music-player">
             <img id="avatar" src="images/citi.jpg" alt="Avatar TimeZ" class="avatar">
@@ -47,15 +47,19 @@
             <a href="https://discordapp.com/users/634634219058102291" target="_blank" title="Discord" data-tooltip="Discord"><i class="fab fa-discord"></i></a>
             <a href="https://www.threads.net/@o0timez" target="_blank" title="Threads" data-tooltip="Threads"><i class="fab fa-threads"></i></a>
         </div>
+
+        <!-- Ảnh GIF About Me -->
         <div id="about-me-icon">
             <img src="nuko/nukoPleading.gif" alt="About Me" id="about-me-gif">
         </div>
     </div>
+
+    <!-- Hộp thoại About Me -->
     <div id="about-me-modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <div id="about-me-content">
-                <!-- Content from aboutme.txt will be loaded here -->
+                <!-- Nội dung aboutme.md sẽ được load vào đây -->
             </div>
         </div>
     </div>
