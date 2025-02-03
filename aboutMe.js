@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const aboutMeContent = document.getElementById("about-me-content");
     const closeBtn = document.querySelector(".close");
 
-    // Khi nhấn vào ảnh GIF, load nội dung từ aboutme.md
+    // Khi nhấn vào ảnh GIF, tải nội dung từ aboutme.md
     aboutMeGif.addEventListener("click", function () {
         fetch("Aboutme/aboutme.md")
             .then(response => response.text())
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
         aboutMeModal.style.display = "none";
     });
 
-    // Khi nhấn ra ngoài modal, cũng đóng luôn
+    // Khi nhấn ra ngoài modal, cũng đóng hộp thoại
     window.addEventListener("click", function (event) {
         if (event.target === aboutMeModal) {
             aboutMeModal.style.display = "none";
