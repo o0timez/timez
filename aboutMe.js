@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.style.display = "block";
 
         // Load the content from aboutme.txt
-        fetch('About me/aboutme.txt')
+        fetch('Aboutme/aboutme.txt')
         .then(response => response.text())
         .then(text => {
             modalContent.textContent = text;
