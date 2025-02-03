@@ -98,23 +98,15 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;  /* Adjust as needed */
-    height: 40px; /* Adjust as needed */
-    font-size: 1.2em; /* Icon size */
+    width: 50px;  /* Adjust as needed */
+    height: 50px; /* Adjust as needed */
+    font-size: 1.5em; /* Icon size */
     background-color: #F37EB5;
     color: white;
     text-decoration: none;
     border-radius: 50%; /* Make it circular */
     font-weight: 500;
     transition: background-color 0.3s, transform 0.2s ease-in-out;
-}
-
-/* Style for image icons */
-.links a img {
-    width: 100%; /* Adjust as needed */
-    height: 100%; /* Adjust as needed */
-    border-radius: 50%;
-    object-fit: cover;
 }
 
 .links a:hover {
