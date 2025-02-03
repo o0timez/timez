@@ -300,3 +300,15 @@ input[type="range"]:focus::-webkit-slider-thumb {
         height: auto;
     }
 }
+
+/* gif mở video */
+.gif-toggle {
+        border-radius: 50%;
+        transition: transform 0.3s ease; /* Smooth transformation for hover */
+    }
+
+    .gif-toggle:hover {
+        transform: scale(1.1); /* Slightly enlarge the image on hover */
+    }
+
+
