@@ -73,12 +73,10 @@ function playNextTrack() {
     console.log("play next track")
 }
 
-
-    if (musicUrls[0].includes('youtube.com')) {
-        onYouTubeIframeAPIReady();
-    } else if (musicUrls[0].includes('soundcloud.com')) {
-        createSoundCloudPlayer(musicUrls[0]);
-    }
+if (musicUrls[0].includes('youtube.com')) {
+    onYouTubeIframeAPIReady();
+} else if (musicUrls[0].includes('soundcloud.com')) {
+    createSoundCloudPlayer(musicUrls[0]);
 }
 
 // Chạy khi trang web đã tải xong
