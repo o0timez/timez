@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Khi nhấn vào ảnh GIF, tải nội dung từ aboutme.md
     aboutMeGif.addEventListener("click", function () {
-        fetch("Aboutme/aboutme.md")
+        fetch("Aboutme/aboutme.txt")
             .then(response => response.text())
             .then(text => {
                 aboutMeContent.innerHTML = marked.parse(text);
