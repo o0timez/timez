@@ -301,18 +301,20 @@ input[type="range"]:focus::-webkit-slider-thumb {
 }
 
 /* gif mở video */
-`
-        .gif-toggle {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
-            border-radius: 50%;
-            transition: transform 0.3s ease; /* Smooth transformation for hover */
-        }
+.gif-toggle {
+        border-radius: 50%;
+        transition: transform 0.3s ease; /* Smooth transformation for hover */
+        width: 100px; /* Adjust the width of the GIF */
+        height: 100px; /* Adjust the height of the GIF */
+    }
 
-        .gif-toggle:hover {
-            transform: scale(1.1); /* Slightly enlarge the image on hover */
-        }
+    .gif-toggle:hover {
+        transform: scale(1.1); /* Slightly enlarge the image on hover */
+    }
+/* Style for toggle video GIF */
+#toggle-video-gif {
+    position: fixed; /* Fixed position relative to the viewport */
+    top: 20px; /* Adjust the top position as needed */
+    right: 20px; /* Adjust the right position as needed */
+    z-index: 100; /* Ensure it's on top of other elements */
+}
