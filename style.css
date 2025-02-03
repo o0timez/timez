@@ -145,9 +145,7 @@ h1 {
     right: 20px;
     cursor: pointer;
     transition: transform 0.3s ease;
-    background-color: #F37EB5; /* Add this line to give it background color*/
     padding: 5px;
-    border-radius: 50%;
     z-index: 100; /* Ensure the icon is above other content */
 }
 
@@ -155,8 +153,7 @@ h1 {
     width: 30px;
     height: 30px;
     object-fit: contain;
-    border: 2px solid #F37EB5;
-    border-radius: 50%;
+
 }
 
 #about-me-icon:hover {
