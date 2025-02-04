@@ -94,12 +94,16 @@ function initMusicPlayer() {
 
 window.onload = initMusicPlayer;
 
-document.getElementById('toggle-video-gif').addEventListener('click', function() {
-    const playerContainer = document.getElementById('player-container');
-    isVideoVisible = !isVideoVisible;
-    if (isVideoVisible) {
-      playerContainer.style.display = 'flex';
-    } else {
-      playerContainer.style.display = 'none';
-    }
-});
+// Corrected event listener for toggle-video-gif
+const toggleVideoGifButton = document.getElementById('toggle-video-gif');
+if (toggleVideoGifButton) {
+    toggleVideoGifButton.addEventListener('click', function() {
+        const playerContainer = document.getElementById('player-container');
+        isVideoVisible = !isVideoVisible;
+        if (isVideoVisible) {
+          playerContainer.style.display = 'flex';
+        } else {
+          playerContainer.style.display = 'none';
+        }
+    });
+}
