@@ -99,6 +99,13 @@ const toggleVideoGifButton = document.getElementById('toggle-video-gif');
 if (toggleVideoGifButton) {
     toggleVideoGifButton.addEventListener('click', function() {
         const playerContainer = document.getElementById('player-container');
+        if(!playerContainer){
+            console.error("player-container element not found");
+            return;
+        }
+        if(musicUrls[0].includes('youtube.com') && !musicPlayer){
+            onYouTubeIframeAPIReady();
+        }
         isVideoVisible = !isVideoVisible;
         if (isVideoVisible) {
           playerContainer.style.display = 'flex';
