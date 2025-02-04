@@ -1,4 +1,4 @@
-let musicPlayer;
+let currentPlayer;
 const musicUrls = [
     'https://youtu.be/jQLyNVbSaW8?si=GlldOyW6kJtNTjPB',
     'https://youtu.be/gft21nuD8XQ?si=J6cCkTv6fWtWbMr3',
@@ -7,6 +7,7 @@ const musicUrls = [
 
 let currentTrack = 0;
 let soundcloudWidget;
+let musicPlayer;
 
 function onYouTubeIframeAPIReady() {
     musicPlayer = new YT.Player('player', {
@@ -18,6 +19,7 @@ function onYouTubeIframeAPIReady() {
             'onStateChange': onPlayerStateChange
         }
     });
+    currentPlayer = 'youtube';
 }
 
 function onPlayerReady(event) {
@@ -35,6 +37,7 @@ function createSoundCloudPlayer(url) {
     soundcloudPlayer.src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(url);
 
     soundcloudWidget = SC.Widget(soundcloudPlayer);
+    currentPlayer = 'soundcloud';
     soundcloudWidget.bind(SC.Widget.Events.READY, function () {
         soundcloudWidget.play();
     });
@@ -63,10 +66,9 @@ function onPlayerStateChange(event) {
 }
 
 document.getElementById('avatar').addEventListener('click', function () {
-    if (musicPlayer && musicPlayer.getPlayerState() !== YT.PlayerState.PLAYING) {
+    if (currentPlayer === 'youtube' && musicPlayer && musicPlayer.getPlayerState() !== YT.PlayerState.PLAYING) {
         musicPlayer.playVideo();
-    }
-    if (soundcloudWidget) {
+    } else if (currentPlayer === 'soundcloud' && soundcloudWidget) {
         soundcloudWidget.play();
     }
 });
@@ -80,17 +82,17 @@ function playNextTrack() {
     const url = musicUrls[currentTrack];
 
     if (url.includes('youtube.com') || url.includes('youtu.be')) {
-        if (musicPlayer) {
+        if (currentPlayer == 'youtube' && musicPlayer) {
             musicPlayer.loadVideoById(extractYouTubeID(url));
         } else {
+            if(soundcloudWidget){
+                soundcloudWidget.pause();
+            }
             onYouTubeIframeAPIReady();
         }
-        if (soundcloudWidget) {
-            soundcloudWidget.pause();
-        }
     } else if (url.includes('soundcloud.com')) {
-        if (musicPlayer) {
-            musicPlayer.stopVideo(); // Ensure the YouTube player stops completely
+        if (currentPlayer == 'youtube' && musicPlayer) {
+           musicPlayer.destroy();
         }
         createSoundCloudPlayer(url);
     }
@@ -116,7 +118,7 @@ if (toggleVideoGifButton) {
             console.error("player-container element not found");
             return;
         }
-        if (!musicPlayer) {
+        if (!musicPlayer && musicUrls[0].includes('youtube.com') || musicUrls[0].includes('youtu.be')) {
             onYouTubeIframeAPIReady();
         }
         // Toggle the container display
