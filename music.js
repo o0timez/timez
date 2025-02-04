@@ -93,8 +93,8 @@ function initMusicPlayer() {
 
 window.onload = initMusicPlayer;
 
-// Corrected event listener for toggle-video-gif
-const toggleVideoGifButton = document.getElementById('toggle-video-gif');
+// Event listener for toggle-video-gif
+const toggleVideoGifButton = document.querySelector('.toggle-video-gif');
 if (toggleVideoGifButton) {
     toggleVideoGifButton.addEventListener('click', function () {
         const playerContainer = document.getElementById('player-container');
