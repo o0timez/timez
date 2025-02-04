@@ -75,8 +75,8 @@ function showTapEffect(event) {
     let tapEffect = document.createElement("img");
     tapEffect.src = randomGif;
     tapEffect.style.position = "absolute";
-    tapEffect.style.width = "50px";
-    tapEffect.style.height = "50px";
+    tapEffect.style.width = "30px";
+    tapEffect.style.height = "30px";
 
     // Random offset for position to avoid overlap
     const offsetX = Math.random() * 20 - 10; // -10 to +10
