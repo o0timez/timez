@@ -6,7 +6,6 @@ const musicUrls = [
 ];
 
 let currentTrack = 0;
-let isVideoVisible = false;
 let soundcloudWidget;
 
 function onYouTubeIframeAPIReady() {
@@ -35,9 +34,9 @@ function createSoundCloudPlayer(url) {
     //set the url in the iframe
     const soundcloudPlayer = document.getElementById('soundcloud-player');
     soundcloudPlayer.src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(url);
-    
+
     soundcloudWidget = SC.Widget(soundcloudPlayer);
-    soundcloudWidget.bind(SC.Widget.Events.READY, function() {
+    soundcloudWidget.bind(SC.Widget.Events.READY, function () {
         soundcloudWidget.play();
     });
     return soundcloudWidget;
@@ -49,7 +48,7 @@ function onPlayerStateChange(event) {
     }
 }
 
-document.getElementById('avatar').addEventListener('click', function() {
+document.getElementById('avatar').addEventListener('click', function () {
     if (musicPlayer && musicPlayer.getPlayerState() !== YT.PlayerState.PLAYING) {
         musicPlayer.playVideo();
     }
@@ -58,7 +57,7 @@ document.getElementById('avatar').addEventListener('click', function() {
     }
 });
 
-document.getElementById('avatar').addEventListener('dblclick', function() {
+document.getElementById('avatar').addEventListener('dblclick', function () {
     playNextTrack();
 });
 
@@ -67,9 +66,9 @@ function playNextTrack() {
     const url = musicUrls[currentTrack];
 
     if (url.includes('youtube.com')) {
-        if(musicPlayer){
-        musicPlayer.loadVideoById(extractYouTubeID(url));
-        }else{
+        if (musicPlayer) {
+            musicPlayer.loadVideoById(extractYouTubeID(url));
+        } else {
             onYouTubeIframeAPIReady();
         }
         if (soundcloudWidget) {
@@ -97,20 +96,16 @@ window.onload = initMusicPlayer;
 // Corrected event listener for toggle-video-gif
 const toggleVideoGifButton = document.getElementById('toggle-video-gif');
 if (toggleVideoGifButton) {
-    toggleVideoGifButton.addEventListener('click', function() {
+    toggleVideoGifButton.addEventListener('click', function () {
         const playerContainer = document.getElementById('player-container');
-        if(!playerContainer){
+        if (!playerContainer) {
             console.error("player-container element not found");
             return;
         }
-        if(musicUrls[0].includes('youtube.com') && !musicPlayer){
+        if (musicUrls[0].includes('youtube.com') && !musicPlayer) {
             onYouTubeIframeAPIReady();
         }
-        isVideoVisible = !isVideoVisible;
-        if (isVideoVisible) {
-          playerContainer.style.display = 'flex';
-        } else {
-          playerContainer.style.display = 'none';
-        }
+        // Always show the container
+        playerContainer.style.display = 'flex';
     });
 }
