@@ -39,12 +39,22 @@ function createSoundCloudPlayer(url) {
     soundcloudWidget.bind(SC.Widget.Events.READY, function () {
         soundcloudWidget.play();
     });
+    soundcloudWidget.bind(SC.Widget.Events.PLAY, function () {
+        startAvatarRotation();
+    });
+    soundcloudWidget.bind(SC.Widget.Events.PAUSE, function () {
+        stopAvatarRotation();
+    });
     return soundcloudWidget;
 }
 
 function onPlayerStateChange(event) {
     if (event.data === YT.PlayerState.ENDED) {
         playNextTrack();
+    } else if (event.data === YT.PlayerState.PLAYING) {
+        startAvatarRotation();
+    } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+        stopAvatarRotation();
     }
 }
 
@@ -112,4 +122,20 @@ if (toggleVideoGifButton) {
             playerContainer.style.display = 'flex';
         }
     });
+}
+
+// Function to start the avatar rotation
+function startAvatarRotation() {
+    const avatar = document.getElementById('avatar');
+    if (avatar) {
+        avatar.classList.add('playing');
+    }
+}
+
+// Function to stop the avatar rotation
+function stopAvatarRotation() {
+    const avatar = document.getElementById('avatar');
+    if (avatar) {
+        avatar.classList.remove('playing');
+    }
 }
