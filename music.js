@@ -21,7 +21,7 @@ function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady(event) {
-    console.log("Player ready!")
+    console.log("Player ready!");
 }
 
 function extractYouTubeID(url) {
@@ -31,7 +31,6 @@ function extractYouTubeID(url) {
 }
 
 function createSoundCloudPlayer(url) {
-    //set the url in the iframe
     const soundcloudPlayer = document.getElementById('soundcloud-player');
     soundcloudPlayer.src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(url);
 
@@ -80,7 +79,7 @@ function playNextTrack() {
     currentTrack = Math.floor(Math.random() * musicUrls.length);
     const url = musicUrls[currentTrack];
 
-    if (url.includes('youtube.com')) {
+    if (url.includes('youtube.com') || url.includes('youtu.be')) {
         if (musicPlayer) {
             musicPlayer.loadVideoById(extractYouTubeID(url));
         } else {
@@ -95,11 +94,11 @@ function playNextTrack() {
         }
         createSoundCloudPlayer(url);
     }
-    console.log("play next track")
+    console.log("play next track");
 }
 
 function initMusicPlayer() {
-    if (musicUrls[0].includes('youtube.com')) {
+    if (musicUrls[0].includes('youtube.com') || musicUrls[0].includes('youtu.be')) {
         onYouTubeIframeAPIReady();
     } else if (musicUrls[0].includes('soundcloud.com')) {
         createSoundCloudPlayer(musicUrls[0]);
