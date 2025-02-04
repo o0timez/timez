@@ -105,7 +105,11 @@ if (toggleVideoGifButton) {
         if (!musicPlayer) {
             onYouTubeIframeAPIReady();
         }
-        // Always show the container
-        playerContainer.style.display = 'flex';
+        // Toggle the container display
+        if (playerContainer.style.display === 'flex') {
+            playerContainer.style.display = 'none';
+        } else {
+            playerContainer.style.display = 'flex';
+        }
     });
 }
