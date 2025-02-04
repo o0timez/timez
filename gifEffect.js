@@ -54,7 +54,7 @@ const gifList = Array.from(gifDurations.keys());
 const activeGifs = new Set(); // Store currently displayed GIFs
 
 let lastGifTime = 0; // Initialize the last GIF time
-const cooldown = 500; // Cooldown period in milliseconds (e.g., 500ms = 0.5 seconds)
+const cooldown = 0; // Cooldown period set to 0 milliseconds
 
 function showTapEffect(event) {
     const currentTime = Date.now();
@@ -69,7 +69,7 @@ function showTapEffect(event) {
     let randomIndex = Math.floor(Math.random() * gifList.length);
     let randomGif = gifList[randomIndex];
 
-    //Correct path
+    // Correct path
     randomGif = `/timez/${randomGif}`;
 
     let tapEffect = document.createElement("img");
@@ -88,7 +88,7 @@ function showTapEffect(event) {
     tapEffect.style.opacity = "1";
 
     document.body.appendChild(tapEffect);
-    activeGifs.add(tapEffect) // Add new gif to the set
+    activeGifs.add(tapEffect); // Add new gif to the set
 
     // Get the GIF duration and set a timeout to remove it
     const duration = gifDurations.get(gifList[randomIndex]);
