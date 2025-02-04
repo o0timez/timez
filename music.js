@@ -90,7 +90,7 @@ function playNextTrack() {
         }
     } else if (url.includes('soundcloud.com')) {
         if (musicPlayer) {
-            musicPlayer.pauseVideo();
+            musicPlayer.stopVideo(); // Ensure the YouTube player stops completely
         }
         createSoundCloudPlayer(url);
     }
