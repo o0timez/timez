@@ -311,16 +311,21 @@ input[type="range"]:focus::-webkit-slider-thumb {
     .gif-toggle:hover {
         transform: scale(1.1); /* Slightly enlarge the image on hover */
     }
-`
 /* Style for toggle video GIF */
 .container {
   position: relative; /* This is important for the absolute positioning of the image */
 }
-#toggle-video-gif {
+.toggle-video-gif {
   position: absolute;
   top: 10px;
   right: 10px;
+  width: 20px; /* Add the width of the gif */
+  height: 20px; /* Add the height of the gif */
   margin-top: 0px;
   margin-right: 10px;
   z-index: 100; /* make sure the gif alway on top */
+}
+
+#player-container.show-player ~ .container .toggle-video-gif {
+  display: block;
 }
