@@ -278,7 +278,7 @@ input[type="range"]:focus::-webkit-slider-thumb {
 
 /*make the player in center*/
 #player-container {
-
+    display: none;
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
     position: fixed; /* Cover the whole viewport */
