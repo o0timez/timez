@@ -318,7 +318,6 @@ input[type="range"]:focus::-webkit-slider-thumb {
 .toggle-video-gif {
   position: absolute;
   top: 10px;
-  display:none;
   right: 10px;
   width: 20px; /* Add the width of the gif */
   height: 20px; /* Add the height of the gif */
