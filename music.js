@@ -102,7 +102,7 @@ if (toggleVideoGifButton) {
             console.error("player-container element not found");
             return;
         }
-        if (musicUrls[0].includes('youtube.com') && !musicPlayer) {
+        if (!musicPlayer) {
             onYouTubeIframeAPIReady();
         }
         // Always show the container
