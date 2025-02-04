@@ -45,12 +45,17 @@ function createSoundCloudPlayer(url) {
     soundcloudWidget.bind(SC.Widget.Events.PAUSE, function () {
         stopAvatarRotation();
     });
+    soundcloudWidget.bind(SC.Widget.Events.FINISH, function () {
+        soundcloudWidget.seekTo(0);
+        soundcloudWidget.play();
+    });
     return soundcloudWidget;
 }
 
 function onPlayerStateChange(event) {
     if (event.data === YT.PlayerState.ENDED) {
-        playNextTrack();
+        musicPlayer.seekTo(0);
+        musicPlayer.playVideo();
     } else if (event.data === YT.PlayerState.PLAYING) {
         startAvatarRotation();
     } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
