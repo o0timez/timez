@@ -2,7 +2,7 @@ let musicPlayer;
 const musicUrls = [
     'https://youtu.be/jQLyNVbSaW8?si=GlldOyW6kJtNTjPB',
     'https://youtu.be/gft21nuD8XQ?si=J6cCkTv6fWtWbMr3',
-    'https://soundcloud.com/user-123456789/song',
+    'https://soundcloud.com/user-70491581/lovly-lori-love-for-you-1?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
 ];
 
 let currentTrack = 0;
