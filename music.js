@@ -32,7 +32,11 @@ function extractYouTubeID(url) {
 }
 
 function createSoundCloudPlayer(url) {
-    soundcloudWidget = SC.Widget(url);
+    //set the url in the iframe
+    const soundcloudPlayer = document.getElementById('soundcloud-player');
+    soundcloudPlayer.src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(url);
+    
+    soundcloudWidget = SC.Widget(soundcloudPlayer);
     soundcloudWidget.bind(SC.Widget.Events.READY, function() {
         soundcloudWidget.play();
     });
@@ -95,9 +99,7 @@ document.getElementById('toggle-video-gif').addEventListener('click', function()
     isVideoVisible = !isVideoVisible;
     if (isVideoVisible) {
       playerContainer.style.display = 'flex';
-      //we dont need to resume the video here
     } else {
       playerContainer.style.display = 'none';
-      //we dont need to pause the video here
     }
 });
