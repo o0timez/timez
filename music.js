@@ -1,13 +1,12 @@
-let currentPlayer;
+let musicPlayer;
 const musicUrls = [
     'https://youtu.be/jQLyNVbSaW8?si=GlldOyW6kJtNTjPB',
     'https://youtu.be/gft21nuD8XQ?si=J6cCkTv6fWtWbMr3',
-    'https://soundcloud.com/user-70491581/lovly-lori-love-for-you-1?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+    'https://soundcloud.com/user-123456789/song',
 ];
 
 let currentTrack = 0;
 let soundcloudWidget;
-let musicPlayer;
 
 function onYouTubeIframeAPIReady() {
     musicPlayer = new YT.Player('player', {
@@ -19,11 +18,10 @@ function onYouTubeIframeAPIReady() {
             'onStateChange': onPlayerStateChange
         }
     });
-    currentPlayer = 'youtube';
 }
 
 function onPlayerReady(event) {
-    console.log("Player ready!");
+    console.log("Player ready!")
 }
 
 function extractYouTubeID(url) {
@@ -33,11 +31,11 @@ function extractYouTubeID(url) {
 }
 
 function createSoundCloudPlayer(url) {
+    //set the url in the iframe
     const soundcloudPlayer = document.getElementById('soundcloud-player');
     soundcloudPlayer.src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(url);
 
     soundcloudWidget = SC.Widget(soundcloudPlayer);
-    currentPlayer = 'soundcloud';
     soundcloudWidget.bind(SC.Widget.Events.READY, function () {
         soundcloudWidget.play();
     });
@@ -66,9 +64,10 @@ function onPlayerStateChange(event) {
 }
 
 document.getElementById('avatar').addEventListener('click', function () {
-    if (currentPlayer === 'youtube' && musicPlayer && musicPlayer.getPlayerState() !== YT.PlayerState.PLAYING) {
+    if (musicPlayer && musicPlayer.getPlayerState() !== YT.PlayerState.PLAYING) {
         musicPlayer.playVideo();
-    } else if (currentPlayer === 'soundcloud' && soundcloudWidget) {
+    }
+    if (soundcloudWidget) {
         soundcloudWidget.play();
     }
 });
@@ -81,26 +80,26 @@ function playNextTrack() {
     currentTrack = Math.floor(Math.random() * musicUrls.length);
     const url = musicUrls[currentTrack];
 
-    if (url.includes('youtube.com') || url.includes('youtu.be')) {
-        if (currentPlayer == 'youtube' && musicPlayer) {
+    if (url.includes('youtube.com')) {
+        if (musicPlayer) {
             musicPlayer.loadVideoById(extractYouTubeID(url));
         } else {
-            if(soundcloudWidget){
-                soundcloudWidget.pause();
-            }
             onYouTubeIframeAPIReady();
         }
+        if (soundcloudWidget) {
+            soundcloudWidget.pause();
+        }
     } else if (url.includes('soundcloud.com')) {
-        if (currentPlayer == 'youtube' && musicPlayer) {
-           musicPlayer.destroy();
+        if (musicPlayer) {
+            musicPlayer.pauseVideo();
         }
         createSoundCloudPlayer(url);
     }
-    console.log("play next track");
+    console.log("play next track")
 }
 
 function initMusicPlayer() {
-    if (musicUrls[0].includes('youtube.com') || musicUrls[0].includes('youtu.be')) {
+    if (musicUrls[0].includes('youtube.com')) {
         onYouTubeIframeAPIReady();
     } else if (musicUrls[0].includes('soundcloud.com')) {
         createSoundCloudPlayer(musicUrls[0]);
@@ -118,7 +117,7 @@ if (toggleVideoGifButton) {
             console.error("player-container element not found");
             return;
         }
-        if (!musicPlayer && musicUrls[0].includes('youtube.com') || musicUrls[0].includes('youtu.be')) {
+        if (!musicPlayer) {
             onYouTubeIframeAPIReady();
         }
         // Toggle the container display
