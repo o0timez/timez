@@ -3,6 +3,9 @@
 </div>
 <p>IQ:125+</p>
 <p>EQ135+</p>
+<p>MQ:135</p>
+<p>PQ:130</p>
+<p>AQ130+</p>
 <p>MBTI:INFJ+INFP(a little isfp)</p>
 <div class="bio-section">
   <p>Birthday: 22/01♒ <img src="nuko/nukoShy4.gif" class="bio-icon"></p>
