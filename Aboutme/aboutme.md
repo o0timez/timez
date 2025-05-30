@@ -1,8 +1,14 @@
 <div class="bio-section">
-  <p>Name: Cuong ♂<img src="nuko/nukoShy3.gif" class="bio-icon"></p>
+<p>IQ:125+</p>
+<p>EQ135+</p>
+<p>MBTI:INFJ+INFP(a little isfp)</p>
+<p>Name: Cuong ♂<img src="nuko/nukoShy3.gif" class="bio-icon"></p>
 </div>
+<p>IQ:125+</p>
+<p>EQ135+</p>
+<p>MBTI:INFJ+INFP(a little isfp)</p>
 <div class="bio-section">
-  <p>Birthday: 22/01 <img src="nuko/nukoShy4.gif" class="bio-icon"></p>
+  <p>Birthday: 22/01♒ <img src="nuko/nukoShy4.gif" class="bio-icon"></p>
 </div>
 <div class="bio-section">
   <p>Hobbies: Manga, novels, silly thing, Japanese music <img src="nuko/nukoThumbsUp2.gif" class="bio-icon"></p>
