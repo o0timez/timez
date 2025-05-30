@@ -8,7 +8,7 @@
 <p>EQ:130+</p>
 <p>AQ:75</p>
 <p>SQ:85(SOCIAL Q</p>
-<p>LQ:125+</p>
+<p>LQ:140+</p>
 <p>MQ:135+ (MEANING Q)</p>
 <p>MQ:135+ (MORAL Q)</p>
 <p>PQ:115+</p>
