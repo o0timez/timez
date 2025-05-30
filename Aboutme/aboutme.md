@@ -1,7 +1,4 @@
 <div class="bio-section">
-<p>IQ:125+</p>
-<p>EQ135+</p>
-<p>MBTI:INFJ+INFP(a little isfp)</p>
 <p>Name: Cuong ♂<img src="nuko/nukoShy3.gif" class="bio-icon"></p>
 </div>
 <p>IQ:125+</p>
