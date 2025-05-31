@@ -7,7 +7,7 @@
 <p>Birthday: 22/01
 MBTI: INFJ + INFP (một chút ISFP)
 Enneagram: 4w5
-IQ (Intelligence Quotient): 128+
+IQ (Intelligence Quotient): 128+<br>
 EQ (Emotional Quotient): 130+
 AQ (Adversity Quotient): 75
 SQ (Social Quotient): 85
