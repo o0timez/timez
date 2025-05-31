@@ -8,17 +8,17 @@
 MBTI: INFJ + INFP (một chút ISFP)<br>
 Enneagram: 4w5<br>
 IQ (Intelligence Quotient): 128+<br>
-EQ (Emotional Quotient): 130+
-AQ (Adversity Quotient): 75
-SQ (Social Quotient): 85
-LQ (Learning Quotient): 140+
-MQ (Meaning Quotient): 135+
-MQ (Moral Quotient): 135+
-PQ (Physical Quotient): 115±
-SpQ (Spiritual Quotient): 140+
-HQ (Happiness Quotient): 65±
-CQ (Creativity Quotient): 130+
-CurQ (Curiosity Quotient): 140+
+EQ (Emotional Quotient): 130+<br>
+AQ (Adversity Quotient): 75<br>
+SQ (Social Quotient): 85<br>
+LQ (Learning Quotient): 140+<br>
+MQ (Meaning Quotient): 135+<br>
+MQ (Moral Quotient): 135+<br>
+PQ (Physical Quotient): 115±<br>
+SpQ (Spiritual Quotient): 140+<br>
+HQ (Happiness Quotient): 65±<br>
+CQ (Creativity Quotient): 130+<br>
+CurQ (Curiosity Quotient): 140+<br>
 </p>
 <div class="bio-section">
   <p>Hobbies: Manga, novels, silly thing, Japanese music <img src="nuko/nukoThumbsUp2.gif" class="bio-icon"></p>
