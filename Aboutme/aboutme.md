@@ -4,16 +4,22 @@
 <div class="bio-section">
   <p>Birthday: 22/01♒ <img src="nuko/nukoShy4.gif" class="bio-icon"></p>
 </div>
-<p>IQ:128+</p>
-<p>EQ:130+</p>
-<p>AQ:75</p>
-<p>SQ:85(SOCIAL Q</p>
-<p>LQ:140+</p>
-<p>MQ:135+ (MEANING Q)</p>
-<p>MQ:135+ (MORAL Q)</p>
-<p>PQ:115+</p>
-<p>SQ:140(SPIRITUAL Q)</p>
-<p>MBTI:INFJ+INFP(a little isfp)</p>
+<p>Birthday: 22/01
+MBTI: INFJ + INFP (một chút ISFP)
+Enneagram: 4w5
+IQ (Intelligence Quotient): 128+
+EQ (Emotional Quotient): 130+
+AQ (Adversity Quotient): 75
+SQ (Social Quotient): 85
+LQ (Learning Quotient): 140+
+MQ (Meaning Quotient): 135+
+MQ (Moral Quotient): 135+
+PQ (Physical Quotient): 115±
+SpQ (Spiritual Quotient): 140+
+HQ (Happiness Quotient): 65±
+CQ (Creativity Quotient): 130+
+CurQ (Curiosity Quotient): 140+
+</p>
 <div class="bio-section">
   <p>Hobbies: Manga, novels, silly thing, Japanese music <img src="nuko/nukoThumbsUp2.gif" class="bio-icon"></p>
 </div>
