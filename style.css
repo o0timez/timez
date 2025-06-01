@@ -328,3 +328,17 @@ input[type="range"]:focus::-webkit-slider-thumb {
 
 
 }
+
+#about-me-content {
+  overflow-y: auto;
+  max-height: 60vh;
+  padding-right: 8px;
+}
+
+/* Optional - cho phần modal nhìn đẹp hơn */
+.modal-content {
+  max-height: 80vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
