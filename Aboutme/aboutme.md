@@ -1,6 +1,6 @@
 <div class="bio-section">
 <p>Name: Cuong ♂<img src="nuko/nukoShy3.gif" class="bio-icon"></p>
-</div>
+<p>I am Aphantasia<br> and i from VietNam🇻🇳
 <div class="bio-section">
   <p>Birthday: 22/01♒ <img src="nuko/nukoShy4.gif" class="bio-icon"></p>
 </div>
