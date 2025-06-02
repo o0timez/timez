@@ -329,16 +329,16 @@ input[type="range"]:focus::-webkit-slider-thumb {
 
 }
 
-#about-me-content {
-  overflow-y: auto;
-  max-height: 60vh;
-  padding-right: 8px;
-}
-
 /* Optional - cho phần modal nhìn đẹp hơn */
 .modal-content {
   max-height: 80vh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+}
+
+#about-me-content {
+  overflow-y: auto;
+  max-height: 60vh; /* 60% chiều cao của viewport */
+  padding-right: 8px; /* Thêm padding để tránh che khuất nội dung bởi thanh cuộn */
 }
