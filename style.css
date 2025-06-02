@@ -328,15 +328,20 @@ input[type="range"]:focus::-webkit-slider-thumb {
 
 
 }
-
-/* Optional - cho phần modal nhìn đẹp hơn */
 .modal-content {
-  max-height: 80vh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+    background-color: #0004;
+    color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;               /* Anh có thể để 80% để dễ xem hơn trên mobile */
+    max-width: 500px;
+    max-height: 70vh;         /* Hạn chế chiều cao */
+    overflow-y: auto;         /* Cuộn nội dung nếu quá dài */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    font-family: 'Poppins', sans-serif;
+    border: 5px solid #F37EB5;
 }
-
 #about-me-content {
   overflow-y: auto;
   max-height: 60vh; /* 60% chiều cao của viewport */
