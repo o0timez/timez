@@ -1,6 +1,8 @@
 let musicPlayer;
 const musicUrls = [
-    'https://youtu.be/nQVaRFP-ppw?si=gHjzpDnmpFDyVOa4',
+   
+
+'https://youtu.be/bxBhPAXK9ec?si=ZVUt8CuXn24iG6Z2',
     'https://soundcloud.com/user-123456789/song',
 ];
 
