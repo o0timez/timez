@@ -31,5 +31,5 @@ CurQ: 140+<br>
   <p>Skills: self-learning languages <img src="nuko/nukoPanic.gif" class="bio-icon"></p>
 </div>
 <div class="bio-section">
-  <p>Dream: get moneeeeeeeeeee for mi gf <img src="nuko/nukoPleading.gif" class="bio-icon"></p>
+  <p>Dream: get moneeeeeeeeeee for mi gf (I love my future girlfriend very much) <img src="nuko/nukoPleading.gif" class="bio-icon"></p>
 </div>
