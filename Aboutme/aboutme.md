@@ -6,8 +6,8 @@ Birthday: 22/01♒ <img src="nuko/nukoShy4.gif" class="bio-icon"></p>
 </div>
 <p>I am Aphantasia<br> and i from VietNam🇻🇳
 <p>
-MBTI: INFJ + INFP (một chút ISFP)<br>
-Enneagram: 4w5<br>
+MBTI: INFJ<br>
+Enneagram: 5w4<br>
 IQ: 128+<br>
 EQ: 130+<br>
 AQ: 75<br>
