@@ -4,8 +4,10 @@
 Blood Type:O<br>
 Birthday: 22/01♒ <img src="nuko/nukoShy4.gif" class="bio-icon"></p>
 </div>
-<p>I am Aphantasia<br> and i from VietNam🇻🇳
-<p>
+
+<p> tôi nhận nạp thuê tất cả thể loại game nhé, sky cotl, mlbb, v.v <img src="nuko/nukoShy4.gif" class="bio-icon"></p>
+ <p>
+
 MBTI: INFJ<br>
 Enneagram: 5w4<br>
 IQ: 128+<br>
