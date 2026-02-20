@@ -9,6 +9,7 @@ Birthday: 22/01♒ <img src="nuko/nukoShy4.gif" class="bio-icon"></p>
  <p>
 
 MBTI: INFJ<br>
+LoveTypes 16p:Fape<br>
 Enneagram: 5w4<br>
 IQ: 128+<br>
 EQ: 130+<br>
