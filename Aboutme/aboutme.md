@@ -5,7 +5,7 @@ Blood Type:O<br>
 Birthday: 22/01♒ <img src="nuko/nukoShy4.gif" class="bio-icon"></p>
 </div>
 
-<p> tôi nhận nạp thuê tất cả thể loại game nhé, sky cotl, mlbb, v.v mà hãy ib ở messenger nhé nền tảng khác ít dùng <img src="nuko/nukoShy4.gif" class="bio-icon"></p>
+<p> tôi nhận nạp thuê tất cả thể loại game nhé có cả buff tương tác tất cả nền tảng mxh, sky cotl, mlbb, v.v mà hãy ib ở messenger nhé nền tảng khác ít dùng <img src="nuko/nukoShy4.gif" class="bio-icon"></p>
  <p>
 
 MBTI: INFJ<br>
